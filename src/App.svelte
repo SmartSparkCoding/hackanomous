@@ -348,7 +348,7 @@
                     <button onclick={() => window.open("https://hackanomous-rsvp.fillout.com/t/4oPTMjqFuaus", "_blank")} class="font-mono font-semibold border-2 border-solid border-(--accent) bg-(--accent) text-(--bg) rounded-xl px-10 py-3 cursor-pointer hover:bg-transparent hover:text-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)]" style="transition: box-shadow 0.35s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out, color 0.15s ease-out;">RSVP!</button>
                 </div>
                 <h6 class="font-mono font-light text-xs text-center text-(--text-h) tracking-widest mt-4">
-                    ages 13-18 only. <span class="underline underline-offset-2">Jun 1</span> to <span class="underline underline-offset-2">Sept 1</span>.
+                    ages 13-18 only. <span class="underline underline-offset-2">Sept 1</span> to <span class="underline underline-offset-2">Jan 1</span>.
                 </h6>
             </div>
             
