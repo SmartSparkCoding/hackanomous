@@ -343,7 +343,7 @@
                 <div class="flex relative z-10 pl-36 pr-50">
                     <div class="relative flex-1 mr-4">
                         <input id="rsvp-input" class="peer w-full px-4 font-mono font-light border-2 border-solid border-(--accent) text-(--text-h) rounded-xl py-3 focus:outline-none focus:border-(--accent-hover) focus:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] bg-transparent placeholder:text-(--accent-border) placeholder-opacity-100" style="transition: box-shadow 0.35s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out;" type="text" placeholder="you@example.com" />
-                        <label for="rsvp-input" class="absolute left-3 -top-2.5 px-1 font-mono text-xs font-semibold text-(--accent-hover) bg-[#0a1215] opacity-0 translate-y-2 pointer-events-none transition-all duration-300 peer-focus:opacity-100 peer-focus:translate-y-0 rounded-sm border-2">email</label>
+                        <label for="rsvp-input" class="absolute left-3 -top-2.5 px-1 font-mono text-xs font-semibold text-(--accent-hover) bg-[#0a1215] opacity-0 translate-y-2 pointer-events-none transition-all duration-100 peer-focus:opacity-100 peer-focus:translate-y-0 rounded-sm border-2">email</label>
                     </div>
                     <button onclick={() => window.open("https://hackanomous-rsvp.fillout.com/t/4oPTMjqFuaus", "_blank")} class="font-mono font-semibold border-2 border-solid border-(--accent) bg-(--accent) text-(--bg) rounded-xl px-10 py-3 cursor-pointer hover:bg-transparent hover:text-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)]" style="transition: box-shadow 0.35s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out, color 0.15s ease-out;">RSVP!</button>
                 </div>
@@ -359,74 +359,6 @@
                     <span class="font-content font-light text-base tracking-widest">SCROLL DOWN</span>
                 </div>
             </section>
-        </section>
-
-        <!-- timeline -->
-        <section bind:this={horizontalSection} class="min-h-[100dvh] flex flex-col justify-center items-center relative overflow-hidden bg-black/80">
-            <!-- top border strip glow -->
-            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
-
-            <div class="w-full overflow-hidden flex-1 relative">
-                <div id="horizontal-scroller" bind:this={horizontalScroller} class="w-[200dvw] max-w-none flex items-center h-full relative">
-                    <!-- base timeline line -->
-                    <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 block h-[2px] w-[calc(150dvw-8px)] bg-(--text-h)"></div>
-
-                    <!-- timeline events -->
-                    {#each timeline as event (event.title)}
-                        <Event {...event} scrollTween={horizontalScrollTween} />
-                    {/each}
-
-                    <!-- closing node (i.e. present) -->
-                    <div class="absolute top-1/2 left-[150dvw] z-10 hover:z-20 group">
-                        <div class="absolute w-4 h-4 rounded-full border-2 border-(--accent) -translate-x-1/2 -translate-y-1/2 transition-transform"></div>
-                    </div>
-
-                    <!-- right content -->
-                    <div class="absolute top-1/2 left-[165dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45vw] pr-12 lg:pr-24 z-10 flex flex-col items-end text-right">
-                        <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
-                            <span class="italic">DE</span>SLOP THE <br />
-                            <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--accent)_0%,color-mix(in_srgb,var(--accent)_80%,transparent)_100%)]"> WORLD. </span>
-                        </h2>
-
-                        <p class="font-mono font-normal text-lg md:text-xl leading-relaxed text-(--text-h) mt-6 max-w-2xl">
-                            the AI bubble might just be about to pop.<br />
-                            <span class="font-bold text-(--text-l)">YOUR MISSION:</span> build projects incorporating AI that solve <u><span class="font-bold text-(--text-l)">real-world</span></u> problems.
-                        </p>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 w-full max-w-3xl">
-                            <!-- TODO: instead of shifting up on hover, make it lighten up -->
-                            <div class="border border-(--code-bg) p-6 rounded-2xl hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] transition-all duration-500 ease-out group cursor-default">
-                                <h4 class="font-heading text-3xl text-(--accent) mb-2 group-hover:drop-shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_20%,transparent)] transition-all duration-500 text-right">software</h4>
-                                <!-- TODO: elaborate? -->
-                                <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-500">Build software that implements AI or ML to earn Bolts! Use them to buy Raspberry Pis, API credits, RAM & GPU grants, and more!</p>
-                            </div>
-                            <div class="border border-(--code-bg) p-6 rounded-2xl hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] transition-all duration-500 ease-out group cursor-default">
-                                <h4 class="font-heading text-3xl text-(--accent) mb-2 group-hover:drop-shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_20%,transparent)] transition-all duration-500 text-right">hardware</h4>
-                                <!-- TODO: elaborate? -->
-                                <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-500">Design hardware that implements AI or ML and receive funding to build it! Earn bolts for your physical work!</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-5 mt-8">
-                            <button onclick={() => gsap.to(window, { duration: .3, scrollTo: { y: '#faq', autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-300 tracking-wide text-lg"> LEARN MORE </button>
-                            <button onclick={() => gsap.to(window, { duration: .7, scrollTo: { y: 0, autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-300 tracking-wide text-lg"> REGISTER NOW </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- bottom border strip glow -->
-            <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
-        </section>
-
-        <section class="relative min-h-[100dvh] flex justify-center items-center">
-            <h1 class="font-mono">TODO: more content coming soon!<br>keep scrolling for now...</h1>
-
-            <!-- wait, so what do we do? -->
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 floater flex flex-col items-center">
-                <span class="font-content font-light text-base tracking-widest">...wait, so what do we do?</span>
-                <ChevronDown size={24}/>
-            </div>
         </section>
 
         <!-- TODO: vertical step by step scroll -->
@@ -500,6 +432,73 @@
             </div>
 
             <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67 z-10"></div>
+        </section>
+
+        <section class="relative min-h-[100dvh] px-6 md:px-12 xl:px-24 py-24 flex flex-col justify-start items-center">
+
+            <!-- wait, so what do we do? -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 floater flex flex-col items-center">
+                <span class="font-content font-light text-base tracking-widest">...wait, so what do we do?</span>
+                <ChevronDown size={24}/>
+            </div>
+        </section>
+
+        <!-- timeline -->
+        <section bind:this={horizontalSection} class="min-h-[100dvh] flex flex-col justify-center items-center relative overflow-hidden bg-black/80">
+            <!-- top border strip glow -->
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
+
+            <div class="w-full overflow-hidden flex-1 relative">
+                <div id="horizontal-scroller" bind:this={horizontalScroller} class="w-[200dvw] max-w-none flex items-center h-full relative">
+                    <!-- base timeline line -->
+                    <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 block h-[2px] w-[calc(150dvw-8px)] bg-(--text-h)"></div>
+
+                    <!-- timeline events -->
+                    {#each timeline as event (event.title)}
+                        <Event {...event} scrollTween={horizontalScrollTween} />
+                    {/each}
+
+                    <!-- closing node (i.e. present) -->
+                    <div class="absolute top-1/2 left-[150dvw] z-10 hover:z-20 group">
+                        <div class="absolute w-4 h-4 rounded-full border-2 border-(--accent) -translate-x-1/2 -translate-y-1/2 transition-transform"></div>
+                    </div>
+
+                    <!-- right content -->
+                    <div class="absolute top-1/2 left-[165dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45vw] pr-12 lg:pr-24 z-10 flex flex-col items-end text-right">
+                        <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
+                            <span class="italic">DE</span>SLOP THE <br />
+                            <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--accent)_0%,color-mix(in_srgb,var(--accent)_80%,transparent)_100%)]"> WORLD. </span>
+                        </h2>
+
+                        <p class="font-mono font-normal text-lg md:text-xl leading-relaxed text-(--text-h) mt-6 max-w-2xl">
+                            the AI bubble might just be about to pop.<br />
+                            <span class="font-bold text-(--text-l)">YOUR MISSION:</span> build projects incorporating AI that solve <u><span class="font-bold text-(--text-l)">real-world</span></u> problems.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 w-full max-w-3xl">
+                            <!-- TODO: instead of shifting up on hover, make it lighten up -->
+                            <div class="border border-(--code-bg) p-6 rounded-2xl hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] transition-all duration-500 ease-out group cursor-default">
+                                <h4 class="font-heading text-3xl text-(--accent) mb-2 group-hover:drop-shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_20%,transparent)] transition-all duration-500 text-right">software</h4>
+                                <!-- TODO: elaborate? -->
+                                <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-500">Build software that implements AI or ML to earn Bolts! Use them to buy Raspberry Pis, API credits, RAM & GPU grants, and more!</p>
+                            </div>
+                            <div class="border border-(--code-bg) p-6 rounded-2xl hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] transition-all duration-500 ease-out group cursor-default">
+                                <h4 class="font-heading text-3xl text-(--accent) mb-2 group-hover:drop-shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_20%,transparent)] transition-all duration-500 text-right">hardware</h4>
+                                <!-- TODO: elaborate? -->
+                                <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-500">Design hardware that implements AI or ML and receive funding to build it! Earn bolts for your physical work!</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5 mt-8">
+                            <button onclick={() => gsap.to(window, { duration: .3, scrollTo: { y: '#faq', autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-300 tracking-wide text-lg"> LEARN MORE </button>
+                            <button onclick={() => gsap.to(window, { duration: .7, scrollTo: { y: 0, autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-300 tracking-wide text-lg"> REGISTER NOW </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- bottom border strip glow -->
+            <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
         </section>
 
         <!-- standard FAQ and closing info -->
