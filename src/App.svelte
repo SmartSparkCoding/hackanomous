@@ -1,5 +1,6 @@
 <script>
     import { onMount } from "svelte";
+    import { fade } from "svelte/transition";
 
     import { gsap } from "gsap";
     import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -9,6 +10,9 @@
     import p5 from "p5";
 
     import hackclub from "./assets/hackclub.svg";
+    import parthenon from "./assets/events/parthenon.webp";
+    import shipwrecked from "./assets/events/shipwrecked.webp";
+    import undercity from "./assets/events/undercity.webp";
     import mascotDark from "./assets/mascot_dark.svg";
     import orpheus from "./assets/orpheus.svg";
     import Event from "./lib/Event.svelte";
@@ -28,6 +32,27 @@
     let stepsVisual;
     /** @type {ScrollSmoother} */
     let smoothie;
+    let carouselIndex = $state(0);
+
+    const events = [
+        {
+            image: parthenon,
+            label: "150 girls in NYC, at Parthenon",
+            link: "https://www.youtube.com/watch?v=7K_E7tG-O68",
+        },
+        {
+            image: shipwrecked,
+            label: "150 teens in Boston, at Shipwrecked",
+            link: "https://shipwrecked.hackclub.com",
+        },
+        {
+            image: undercity,
+            label: "100 teens in San Francisco, at Undercity",
+            link: "https://www.youtube.com/watch?v=kaEFv7e49mo",
+        },
+    ];
+
+    let activeEvent = $derived(events[carouselIndex]);
 
     const timeline = [
         {
@@ -132,6 +157,10 @@
     ];
 
     onMount(() => {
+        const carouselTimer = window.setInterval(() => {
+            carouselIndex = (carouselIndex + 1) % events.length;
+        }, 5 * 1000);
+
         gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
         smoothie = ScrollSmoother.create({
             smooth: 1,
@@ -160,7 +189,7 @@
 
         const renderer = new p5((p) => {
             /** @typedef {{ x: number; y: number; vx: number; vy: number }} CloudPoint */
-            const LINK_DISTANCE = 143.11; // +25% of 128
+            const LINK_DISTANCE = 143.11; // +25% of 128 (nonlinear!)
             /** @type {CloudPoint[]} */
             const points = [];
 
@@ -205,23 +234,23 @@
                     if (point.y <= 0 || point.y >= p.height) point.vy *= -1;
                 }
 
-                const maxDistanceSq = LINK_DISTANCE * LINK_DISTANCE;
+                const maxDistance = LINK_DISTANCE * LINK_DISTANCE;
                 for (let i = 0; i < points.length; i++) {
                     for (let j = i + 1; j < points.length; j++) {
                         const dx = points[i].x - points[j].x;
                         const dy = points[i].y - points[j].y;
                         const d2 = dx * dx + dy * dy;
-                        if (d2 > maxDistanceSq) continue;
+                        if (d2 > maxDistance) continue;
 
-                        const alpha = (1 - d2 / maxDistanceSq) * 67;
-                        p.stroke(110, 255, 210, alpha);
+                        const alpha = (1 - d2 / maxDistance) * 67;
+                        p.stroke(110, 255, 210, alpha); // NOTE: #6effd2
                         p.strokeWeight(1);
                         p.line(points[i].x, points[i].y, points[j].x, points[j].y);
                     }
                 }
 
                 p.noStroke();
-                p.fill(110, 255, 210, 115);
+                p.fill(110, 255, 210, 115); // NOTE: #6effd2
                 for (let i = 0; i < points.length; i++) {
                     p.circle(points[i].x, points[i].y, 3.2);
                 }
@@ -274,10 +303,12 @@
             });
 
         return () => {
+            window.clearInterval(carouselTimer);
+
             // disable p5
             renderer.remove();
 
-            // disable GSAP tweens first
+            // disable tweens first
             horizontalScrollTween?.scrollTrigger?.kill();
             horizontalScrollTween?.kill();
             horizontalScrollTween = undefined;
@@ -291,7 +322,7 @@
 
             stepsVisualPinTrigger?.kill();
 
-            // disable GSAP ScrollSmoother
+            // disable smoothscroll
             smoothie.kill();
         };
     });
@@ -434,11 +465,37 @@
             <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67 z-10"></div>
         </section>
 
-        <section class="relative min-h-[100dvh] px-6 md:px-12 xl:px-24 py-24 flex flex-col justify-start items-center">
+        <section class="relative min-h-[100dvh] px-6 md:px-12 xl:px-24 py-24 pb-36 flex flex-col justify-center items-center">
+            <div class="max-w-6xl mx-auto w-full">
+                <h1 class="font-heading text-3xl mb-8 tracking-wide">what is <span class="font-mono font-bold text-4xl text-(--accent)">Hackanomous</span>?</h1>
+                <p class="font-content leading-relaxed"><span class="font-mono font-bold text-(--accent)">Hackanomous</span> is a <span class="font-mono font-bold text-(--accent)">YSWS</span> program where you design and ship <span class="font-mono font-bold text-(--accent)">AI-driven</span> personal projects: hardware or software.<br>We walk you through building your own projects while exploring both effective and ineffective usecases of AI, and ship you free rewards!<br><br>We're even hosting a hackathon in Islambad, Pakistan to conclude the event! Qualify by earning enough hours to score an invite!</p>
 
-            <!-- wait, so what do we do? -->
+                <div class="mt-14 w-full">
+                    <a href={activeEvent.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeEvent.label}`} class="group relative block w-full origin-center transform-gpu overflow-hidden rounded-2xl border-2 border-(--code-bg) bg-black/70 aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] focus:outline-none focus-visible:border-(--accent) focus-visible:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_5%,transparent)] hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_4%,transparent)] motion-safe:hover:scale-[1.018] motion-safe:hover:rotate-[0.8deg] transition-all duration-500 ease-out will-change-transform">
+                        {#key carouselIndex}
+                            <img transition:fade={{ duration: 300 }} src={activeEvent.image} alt={activeEvent.label} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                        {/key}
+                        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,14,18,0)_28%,rgba(8,14,18,0.88)_100%)]"></div>
+                        <div class="absolute inset-0 border border-white/10 rounded-[14px] pointer-events-none"></div>
+
+                        <div class="absolute left-4 right-4 bottom-4 md:left-6 md:right-6 md:bottom-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                            <div>
+                                <span class="font-content font-light text-sm tracking-widest">previous events!</span>
+                                <h2 class="font-mono font-medium text-xl md:text-3xl text-(--text) leading-tight">{activeEvent.label}</h2>
+                            </div>
+                            <div class="flex gap-2" aria-hidden="true">
+                                {#each events as event, index (event.label)}
+                                    <span class={`h-1.5 w-10 rounded-full transition-all duration-300 ${index === carouselIndex ? "bg-(--accent)" : "bg-(--accent-border)/50"}`}></span>
+                                {/each}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ...why does this exist? -->
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2 floater flex flex-col items-center">
-                <span class="font-content font-light text-base tracking-widest">...wait, so what do we do?</span>
+                <span class="font-content font-light text-base tracking-widest">...why does this exist?</span>
                 <ChevronDown size={24}/>
             </div>
         </section>
@@ -477,12 +534,12 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 w-full max-w-3xl">
                             <!-- TODO: instead of shifting up on hover, make it lighten up -->
-                            <div class="border border-(--code-bg) p-6 rounded-2xl hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] transition-all duration-500 ease-out group cursor-default">
+                            <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-[1deg] transition-all duration-500 ease-out will-change-transform group cursor-default">
                                 <h4 class="font-heading text-3xl text-(--accent) mb-2 group-hover:drop-shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_20%,transparent)] transition-all duration-500 text-right">software</h4>
                                 <!-- TODO: elaborate? -->
                                 <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-500">Build software that implements AI or ML to earn Bolts! Use them to buy Raspberry Pis, API credits, RAM & GPU grants, and more!</p>
                             </div>
-                            <div class="border border-(--code-bg) p-6 rounded-2xl hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] transition-all duration-500 ease-out group cursor-default">
+                            <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-[1deg] transition-all duration-500 ease-out will-change-transform group cursor-default">
                                 <h4 class="font-heading text-3xl text-(--accent) mb-2 group-hover:drop-shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_20%,transparent)] transition-all duration-500 text-right">hardware</h4>
                                 <!-- TODO: elaborate? -->
                                 <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-500">Design hardware that implements AI or ML and receive funding to build it! Earn bolts for your physical work!</p>
