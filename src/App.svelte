@@ -471,25 +471,28 @@
                 <p class="font-content leading-relaxed"><span class="font-mono font-bold text-(--accent)">Hackanomous</span> is a <span class="font-mono font-bold text-(--accent)">YSWS</span> program where you design and ship <span class="font-mono font-bold text-(--accent)">AI-driven</span> personal projects: hardware or software.<br>We walk you through building your own projects while exploring both effective and ineffective usecases of AI, and ship you free rewards!<br><br>We're even hosting a hackathon in Islambad, Pakistan to conclude the event! Qualify by earning enough hours to score an invite!</p>
 
                 <div class="mt-14 w-full">
-                    <a href={activeEvent.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeEvent.label}`} class="group relative block w-full origin-center transform-gpu overflow-hidden rounded-2xl border-2 border-(--code-bg) bg-black/70 aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] focus:outline-none focus-visible:border-(--accent) focus-visible:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_5%,transparent)] hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_4%,transparent)] motion-safe:hover:scale-[1.018] motion-safe:hover:rotate-[0.8deg] transition-all duration-500 ease-out will-change-transform">
+                    <div class="group relative block w-full origin-center transform-gpu overflow-hidden rounded-2xl border-2 border-(--code-bg) bg-black/70 aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] focus-within:border-(--accent) focus-within:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_5%,transparent)] hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_4%,transparent)] motion-safe:hover:scale-[1.018] motion-safe:hover:rotate-[0.8deg] transition-all duration-500 ease-out will-change-transform">
+                        <a href={activeEvent.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeEvent.label}`} class="absolute inset-0 z-10 cursor-pointer focus:outline-none"></a>
                         {#key carouselIndex}
                             <img transition:fade={{ duration: 300 }} src={activeEvent.image} alt={activeEvent.label} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
                         {/key}
                         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,14,18,0)_28%,rgba(8,14,18,0.88)_100%)]"></div>
                         <div class="absolute inset-0 border border-white/10 rounded-[14px] pointer-events-none"></div>
 
-                        <div class="absolute left-4 right-4 bottom-4 md:left-6 md:right-6 md:bottom-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                        <div class="pointer-events-none absolute left-4 right-4 bottom-4 z-20 md:left-6 md:right-6 md:bottom-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                             <div>
                                 <span class="font-content font-light text-sm tracking-widest">previous events!</span>
                                 <h2 class="font-mono font-medium text-xl md:text-3xl text-(--text) leading-tight">{activeEvent.label}</h2>
                             </div>
-                            <div class="flex gap-2" aria-hidden="true">
+                            <div class="pointer-events-auto flex gap-2" role="group" aria-label="Event carousel controls">
                                 {#each events as event, index (event.label)}
-                                    <span class={`h-1.5 w-10 rounded-full transition-all duration-300 ${index === carouselIndex ? "bg-(--accent)" : "bg-(--accent-border)/50"}`}></span>
+                                    <button type="button" onclick={() => (carouselIndex = index)} aria-label={`Show ${event.label}`} aria-pressed={index === carouselIndex} class="flex h-5 w-10 items-center rounded-full border-none bg-transparent p-0 opacity-80 transition-opacity duration-300 hover:opacity-100 focus:outline-none focus-visible:shadow-[0_0_0_2px_var(--accent)] cursor-pointer">
+                                        <span class={`h-1.5 w-full rounded-full transition-all duration-300 ${index === carouselIndex ? "bg-(--accent)" : "bg-(--accent-border)/50"}`}></span>
+                                    </button>
                                 {/each}
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
 
