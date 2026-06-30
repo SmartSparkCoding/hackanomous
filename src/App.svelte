@@ -494,22 +494,22 @@
                                 {#if activeStepIndex === 0}
                                     <div class="relative h-[78%] w-[78%]">
                                         <img src={mascotDark} alt="anomaly having an idea" class="absolute bottom-[15%] left-[calc(50%+18px)] h-[58%] -translate-x-1/2 object-contain" />
-                                        <Lightbulb class="absolute left-1/2 top-[15%] h-24 w-24 -translate-x-1/2 text-(--accent-hover) drop-shadow-[0_0_52px_color-mix(in_srgb,var(--accent-hover)_70%,transparent)]" strokeWidth={1.8} />
+                                        <Lightbulb class="absolute left-1/2 top-[15%] h-24 w-24 -translate-x-1/2 text-(--accent) drop-shadow-[0_0_52px_color-mix(in_srgb,var(--accent-hover)_70%,transparent)]" strokeWidth={1.8} />
                                     </div>
                                 {:else if activeStepIndex === 1}
                                     <div class="relative h-[78%] w-[78%]">
-                                        <Hammer class="absolute bottom-[48%] left-[calc(50%+120px)] h-24 w-24 -translate-x-1/2 text-(--accent-hover) drop-shadow-[0_0_24px_color-mix(in_srgb,var(--accent-hover)_10%,transparent)]" strokeWidth={1.9} />
+                                        <Hammer class="absolute bottom-[48%] left-[calc(50%+120px)] h-24 w-24 -translate-x-1/2 text-(--accent) drop-shadow-[0_0_24px_color-mix(in_srgb,var(--accent-hover)_10%,transparent)]" strokeWidth={1.9} />
                                         <img src={mascotDark} alt="anomaly holding a hammer" class="absolute bottom-[23%] left-[calc(50%-24px)] h-[56%] -translate-x-1/2 object-contain" />
                                     </div>
                                 {:else if activeStepIndex === 2}
                                     <div class="relative h-[68%] w-[84%]">
-                                        <Truck class="absolute bottom-[22%] left-1/2 h-[52%] w-[86%] -translate-x-1/2 text-(--accent-hover) drop-shadow-[0_0_52px_color-mix(in_srgb,var(--accent-hover)_20%,transparent)]" strokeWidth={1.8} />
+                                        <Truck class="absolute bottom-[22%] left-1/2 h-[52%] w-[86%] -translate-x-1/2 text-(--accent) drop-shadow-[0_0_52px_color-mix(in_srgb,var(--accent-hover)_20%,transparent)]" strokeWidth={1.8} />
                                         <img src={mascotDark} alt="anomaly logo on truck side" class="absolute bottom-[42%] left-[42.5%] h-[20%] -translate-x-1/2 object-contain" />
                                     </div>
                                 {:else}
                                     <div class="relative h-[78%] w-[48%]">
                                         <img src={mascotDark} alt="anomaly with a reward" class="absolute bottom-[16%] left-[calc(50%-18px)] h-[58%] -translate-x-1/2 object-contain" />
-                                        <Trophy class="absolute left-[calc(50%-10px)] top-[19%] h-24 w-24 -translate-x-1/2 text-(--accent-hover) drop-shadow-[0_0_34px_color-mix(in_srgb,var(--accent-hover)_48%,transparent)]" strokeWidth={1.8} />
+                                        <Trophy class="absolute left-[calc(50%-10px)] top-[19%] h-24 w-24 -translate-x-1/2 text-(--accent) drop-shadow-[0_0_34px_color-mix(in_srgb,var(--accent-hover)_48%,transparent)]" strokeWidth={1.8} />
                                     </div>
                                 {/if}
                             </section>
