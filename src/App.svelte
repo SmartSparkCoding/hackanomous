@@ -33,7 +33,10 @@
     /** @type {ScrollSmoother} */
     let smoothie;
     let carouselIndex = $state(0);
+    let activeStepIndex = $state(0);
 
+    // thanks, macondo
+    // TODO: add hctg bc holy peak
     const events = [
         {
             image: parthenon,
@@ -54,6 +57,11 @@
 
     let activeEvent = $derived(events[carouselIndex]);
 
+    const stepVisuals = ["Step 1 visual placeholder", "Step 2 visual placeholder", "Step 3 visual placeholder", "Step 4 visual placeholder"];
+    let activeStepVisual = $derived(stepVisuals[activeStepIndex] ?? stepVisuals[0]);
+
+    // TODO: change header font for timeline or figure out a diff way to represent
+    // NOTE: looks shitty asf, i think it's bc of Unbounded header font -@technodot
     const timeline = [
         {
             left: "5dvw",
@@ -155,6 +163,12 @@
             description: "no.",
         },
     ];
+
+    /** @param {number} index */
+    const activateStep = (index) => {
+        activeStepIndex = index;
+        gsap.to("#step-progress", { yPercent: index * 100, duration: 0.2, ease: "power2.out" });
+    };
 
     onMount(() => {
         const carouselTimer = window.setInterval(() => {
@@ -273,8 +287,8 @@
                     start: "top center+=15%",
                     end: "bottom center-=12%",
                     toggleActions: "play reverse play reverse",
-                    onEnter: () => gsap.to("#step-progress", { yPercent: index * 100, duration: 0.2, ease: "power2.out" }),
-                    onEnterBack: () => gsap.to("#step-progress", { yPercent: index * 100, duration: 0.2, ease: "power2.out" }),
+                    onEnter: () => activateStep(index),
+                    onEnterBack: () => activateStep(index),
                 },
             }),
         );
@@ -329,7 +343,7 @@
 </script>
 
 <div id="smooth-wrapper" class="relative overflow-x-clip bg-[linear-gradient(150deg,#080E12,#0B1618)]">
-    <!-- point cloud overlay -->
+    <!-- cool visuals overlay -->
     <div bind:this={overlay} class="fixed inset-0 w-dvw h-dvh pointer-events-none z-0"></div>
 
     <div id="smooth-content" class="relative z-10">
@@ -357,7 +371,7 @@
         <!-- landing -->
         <section class="relative min-h-[100dvh] flex justify-center items-center py-12 px-4">
             <div class="relative">
-                <div class="w-fit border-2 border-dashed border-(--code-bg) rounded-2xl px-16 py-2 relative z-10 -ml-24 -rotate-5 bg-[linear-gradient(175deg,var(--bg)_0%,#0B1618_33%,#080E12_100%)]">
+                <div class="w-fit border-2 border-dashed border-(--code-bg) rounded-2xl px-16 py-2 relative z-10 -ml-24 -rotate-5 bg-[linear-gradient(175deg,var(--bg)_0%,#0B161850_33%,#080E1280_100%)]">
                     <h3 class="font-mono font-extralight text-sm text-(--text-h) tracking-widest">COMING SOON</h3>
                 </div>
                 <div class="flex">
@@ -455,8 +469,12 @@
 
                 <!-- right side -->
                 <div class="w-1/2 relative h-full">
-                    <div bind:this={stepsVisual} class="w-full aspect-square border-2 border-(--accent) flex items-center justify-center bg-white/1">
-                        <span class="font-mono text-(--text-h)">TODO: visuals content here</span>
+                    <div bind:this={stepsVisual} class="relative flex aspect-square w-full items-center justify-center overflow-hidden border-2 border-(--accent) bg-white/1">
+                        {#key activeStepIndex}
+                            <span transition:fade={{ duration: 200 }} class="absolute inset-0 flex items-center justify-center px-8 text-center font-mono text-(--text-h) will-change-opacity">
+                                {activeStepVisual}
+                            </span>
+                        {/key}
                     </div>
                 </div>
 
@@ -468,7 +486,7 @@
         <section class="relative min-h-[100dvh] px-6 md:px-12 xl:px-24 py-24 pb-36 flex flex-col justify-center items-center">
             <div class="max-w-6xl mx-auto w-full">
                 <h1 class="font-heading text-3xl mb-8 tracking-wide">what is <span class="font-mono font-bold text-4xl text-(--accent)">Hackanomous</span>?</h1>
-                <p class="font-content leading-relaxed"><span class="font-mono font-bold text-(--accent)">Hackanomous</span> is a <span class="font-mono font-bold text-(--accent)">YSWS</span> program where you design and ship <span class="font-mono font-bold text-(--accent)">AI-driven</span> personal projects: hardware or software.<br>We walk you through building your own projects while exploring both effective and ineffective usecases of AI, and ship you free rewards!<br><br>We're even hosting a hackathon in Islambad, Pakistan to conclude the event! Qualify by earning enough hours to score an invite!</p>
+                <p class="font-content leading-relaxed"><span class="font-mono font-bold text-(--accent)">Hackanomous</span> is a <span class="font-mono font-bold text-(--accent)">YSWS</span> program where you design and ship <span class="font-mono font-bold text-(--accent)">AI-driven</span> personal projects: hardware or software.<br>We walk you through building your own projects while exploring both effective and ineffective usecases of AI, and ship you free rewards!<br><br>We're even hosting a hackathon in <span class="font-mono font-bold text-(--accent)">Islambad, Pakistan</span> to conclude the event! Qualify by earning enough hours to score an invite!</p>
 
                 <div class="mt-14 w-full">
                     <div class="group relative block w-full origin-center transform-gpu overflow-hidden rounded-2xl border-2 border-(--code-bg) bg-black/70 aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] focus-within:border-(--accent) focus-within:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_5%,transparent)] hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_4%,transparent)] motion-safe:hover:scale-[1.018] motion-safe:hover:rotate-[0.8deg] transition-all duration-500 ease-out will-change-transform">
@@ -526,8 +544,8 @@
                     <!-- right content -->
                     <div class="absolute top-1/2 left-[165dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45vw] pr-12 lg:pr-24 z-10 flex flex-col items-end text-right">
                         <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
-                            <span class="italic">DE</span>SLOP THE <br />
-                            <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--accent)_0%,color-mix(in_srgb,var(--accent)_80%,transparent)_100%)]"> WORLD. </span>
+                            <span class="italic">DE</span>SLOP THE<br />
+                            <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--accent)_0%,color-mix(in_srgb,var(--accent)_67%,transparent)_100%)]">WORLD.</span>
                         </h2>
 
                         <p class="font-mono font-normal text-lg md:text-xl leading-relaxed text-(--text-h) mt-6 max-w-2xl">
@@ -550,8 +568,8 @@
                         </div>
 
                         <div class="flex gap-5 mt-8">
-                            <button onclick={() => gsap.to(window, { duration: .3, scrollTo: { y: '#faq', autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-300 tracking-wide text-lg"> LEARN MORE </button>
-                            <button onclick={() => gsap.to(window, { duration: .7, scrollTo: { y: 0, autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-300 tracking-wide text-lg"> REGISTER NOW </button>
+                            <button onclick={() => gsap.to(window, { duration: .3, scrollTo: { y: '#faq', autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> LEARN MORE </button>
+                            <button onclick={() => gsap.to(window, { duration: .7, scrollTo: { y: 0, autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> REGISTER NOW </button>
                         </div>
                     </div>
                 </div>
