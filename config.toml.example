@@ -1,0 +1,14 @@
+base_url="http://localhost:8080" # change to prod url in prod bc duh
+
+[database]
+url="postgresql+asyncpg://username:password@localhost:5432/database"
+
+[oauth]
+
+[oauth.hackclub]
+client_id="hca_client_id"
+secret="hca_client_secret" # probably don't push
+
+[oauth.hackatime]
+client_id="hackatime_client_id"
+secret="hackatime_client_secret" # probably don't push
