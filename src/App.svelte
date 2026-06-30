@@ -367,7 +367,7 @@
 
     <div id="smooth-content" class="relative z-10">
         <!-- hackclub icon -->
-        <section class="absolute top-[1.5rem] left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
+        <section class="absolute top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
             <h6 class="text-(--accent-border) ml-[26.13px] tracking-wide">a hack</h6>
             <a href="https://hackclub.com" target="_blank" rel="noopener noreferrer" class="block">
                 <img src={hackclub} class="cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:drop-shadow-xl active:scale-95 active:-translate-y-1 active:duration-150" width="40" alt="Hack Club logo" />
@@ -376,7 +376,7 @@
         </section>
 
         <!-- orpheus flag -->
-        <section class="absolute top-0 left-[24px]">
+        <section class="absolute top-0 left-6">
             <a href="https://hackclub.com" target="_blank" rel="noopener noreferrer" class="block">
                 <img src={orpheus} class="cursor-pointer" width="180" alt="Orpheus flag" />
             </a>
@@ -388,7 +388,7 @@
         </section> -->
 
         <!-- landing -->
-        <section class="relative min-h-[100dvh] flex justify-center items-center py-12 px-4">
+        <section class="relative min-h-dvh flex justify-center items-center py-12 px-4">
             <div class="relative">
                 <div class="w-fit border-2 border-dashed border-(--code-bg) rounded-2xl px-16 py-2 relative z-10 -ml-24 -rotate-5 bg-[linear-gradient(175deg,var(--bg)_0%,#0B161850_33%,#080E1280_100%)]">
                     <h3 class="font-mono font-extralight text-sm text-(--text-h) tracking-widest">COMING SOON</h3>
@@ -426,8 +426,8 @@
         </section>
 
         <!-- TODO: vertical step by step scroll -->
-        <section bind:this={stepsSection} class="min-h-[100dvh] flex flex-col items-center relative overflow-hidden bg-black/80 w-full" id="steps-section">
-            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67 z-10"></div>
+        <section bind:this={stepsSection} class="min-h-dvh flex flex-col items-center relative overflow-hidden bg-black/80 w-full" id="steps-section">
+            <div class="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67 z-10"></div>
 
             <div class="w-full max-w-7xl mx-auto flex flex-row relative py-32 px-6 lg:px-24">
                 
@@ -435,7 +435,7 @@
                 <div class="w-1/2 flex flex-col relative pr-20">
                     
                     <!-- steps progress bar -->
-                    <div class="absolute inset-y-0 left-0 w-[4px] z-20">
+                    <div class="absolute inset-y-0 left-0 w-1 z-20">
                         <div id="steps-progress-wrapper" class="w-full h-[50vh] min-h-[50dvh] bg-(--code-bg)">
                             <div id="step-progress" class="w-full h-1/4 bg-(--accent) shadow-[0_0_50px_color-mix(in_srgb,var(--accent)_50%,transparent)]" style="transform: translateY(0%);"></div>
                         </div>
@@ -446,7 +446,7 @@
                     <!-- steps -->
                     <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 transition-opacity duration-700 ease-out" class:opacity-100={activeStepIndex === 0} class:opacity-30={activeStepIndex !== 0}>
                         <div class="absolute">
-                            <h1 class="relative font-mono font-medium text-7xl left-[-151px] top-[37px]">1</h1>
+                            <h1 class="relative font-mono font-medium text-7xl -left-37.75 top-9.25">1</h1>
                         </div>
                         <h2 class="font-mono font-bold text-4xl text-(--accent-hover) mb-4 tracking-wide">INSPIRE TO CREATE</h2>
                         <p class="font-content font-light text-base text-(--text) leading-relaxed tracking-wide">
@@ -456,7 +456,7 @@
 
                     <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 transition-opacity duration-700 ease-out" class:opacity-100={activeStepIndex === 1} class:opacity-30={activeStepIndex !== 1}>
                         <div class="absolute">
-                            <h1 class="relative font-mono font-medium text-7xl left-[-151px] top-[37px]">2</h1>
+                            <h1 class="relative font-mono font-medium text-7xl -left-37.75 top-9.25">2</h1>
                         </div>
                         <h2 class="font-mono font-bold text-4xl text-(--accent-hover) mb-4 tracking-wide">BUILD YOUR PROJECT</h2>
                         <p class="font-content font-light text-base text-(--text) leading-relaxed tracking-wide">
@@ -466,7 +466,7 @@
 
                     <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 transition-opacity duration-700 ease-out" class:opacity-100={activeStepIndex === 2} class:opacity-30={activeStepIndex !== 2}>
                         <div class="absolute">
-                            <h1 class="relative font-mono font-medium text-7xl left-[-151px] top-[59px]">3</h1>
+                            <h1 class="relative font-mono font-medium text-7xl -left-37.75 top-9.25">3</h1>
                         </div>
                         <h2 class="font-mono font-bold text-4xl text-(--accent-hover) mb-4 tracking-wide">SHIP TO THE WHOLE<br>UNIVERSE</h2>
                         <p class="font-content font-light text-base text-(--text) leading-relaxed tracking-wide">
@@ -476,7 +476,7 @@
 
                     <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 transition-opacity duration-700 ease-out" class:opacity-100={activeStepIndex === 3} class:opacity-30={activeStepIndex !== 3}>
                         <div class="absolute">
-                            <h1 class="relative font-mono font-medium text-7xl left-[-151px] top-[59px]">4</h1>
+                            <h1 class="relative font-mono font-medium text-7xl -left-37.75 top-9.25">4</h1>
                         </div>
                         <h2 class="font-mono font-bold text-4xl text-(--accent-hover) mb-4 tracking-wide">CLAIM YOUR EPIC REWARDS</h2>
                         <p class="font-content font-light text-base text-(--text) leading-relaxed tracking-wide">
@@ -519,16 +519,16 @@
 
             </div>
 
-            <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67 z-10"></div>
+            <div class="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67 z-10"></div>
         </section>
 
-        <section class="relative min-h-[100dvh] px-6 md:px-12 xl:px-24 py-24 pb-36 flex flex-col justify-center items-center">
+        <section class="relative min-h-dvh px-6 md:px-12 xl:px-24 py-24 pb-36 flex flex-col justify-center items-center">
             <div class="max-w-6xl mx-auto w-full">
                 <h1 class="font-heading text-3xl mb-8 tracking-wide">what is <span class="font-mono font-bold text-4xl text-(--accent)">Hackanomous</span>?</h1>
                 <p class="font-content leading-relaxed"><span class="font-mono font-bold text-(--accent)">Hackanomous</span> is a <span class="font-mono font-bold text-(--accent)">YSWS</span> program where you design and ship <span class="font-mono font-bold text-(--accent)">AI-driven</span> personal projects: hardware or software.<br>We walk you through building your own projects while exploring both effective and ineffective usecases of AI, and ship you free rewards!<br><br>We're even hosting a hackathon in <span class="font-mono font-bold text-(--accent)">Islambad, Pakistan</span> to conclude the event! Qualify by earning enough hours to score an invite!</p>
 
                 <div class="mt-14 w-full">
-                    <div class="group relative block w-full origin-center transform-gpu overflow-hidden rounded-2xl border-2 border-(--code-bg) bg-black/70 aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] focus-within:border-(--accent) focus-within:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_5%,transparent)] hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_4%,transparent)] motion-safe:hover:scale-[1.018] motion-safe:hover:rotate-[0.8deg] transition-all duration-500 ease-out will-change-transform">
+                    <div class="group relative block w-full origin-center transform-gpu overflow-hidden rounded-2xl border-2 border-(--code-bg) bg-black/70 aspect-16/10 sm:aspect-video lg:aspect-21/9 focus-within:border-(--accent) focus-within:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_5%,transparent)] hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_4%,transparent)] motion-safe:hover:scale-[1.018] motion-safe:hover:rotate-[0.8deg] transition-all duration-500 ease-out will-change-transform">
                         <a href={activeEvent.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeEvent.label}`} class="absolute inset-0 z-10 cursor-pointer focus:outline-none"></a>
                         {#key carouselIndex}
                             <img transition:fade={{ duration: 300 }} src={activeEvent.image} alt={activeEvent.label} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
@@ -561,14 +561,14 @@
         </section>
 
         <!-- timeline -->
-        <section bind:this={horizontalSection} class="min-h-[100dvh] flex flex-col justify-center items-center relative overflow-hidden bg-black/80">
+        <section bind:this={horizontalSection} class="min-h-dvh flex flex-col justify-center items-center relative overflow-hidden bg-black/80">
             <!-- top border strip glow -->
-            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
+            <div class="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
 
             <div class="w-full overflow-hidden flex-1 relative">
                 <div id="horizontal-scroller" bind:this={horizontalScroller} class="w-[200dvw] max-w-none flex items-center h-full relative">
                     <!-- base timeline line -->
-                    <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 block h-[2px] w-[calc(150dvw-8px)] bg-(--text-h)"></div>
+                    <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 block h-0.5 w-[calc(150dvw-8px)] bg-(--text-h)"></div>
 
                     <!-- timeline events -->
                     {#each timeline as event (event.title)}
@@ -594,12 +594,12 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 w-full max-w-3xl">
                             <!-- TODO: instead of shifting up on hover, make it lighten up -->
-                            <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-[1deg] transition-all duration-500 ease-out will-change-transform group cursor-default">
+                            <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-1 transition-all duration-500 ease-out will-change-transform group cursor-default">
                                 <h4 class="font-heading text-3xl text-(--accent) mb-2 group-hover:drop-shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_20%,transparent)] transition-all duration-500 text-right">software</h4>
                                 <!-- TODO: elaborate? -->
                                 <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-500">Build software that implements AI or ML to earn Bolts! Use them to buy Raspberry Pis, API credits, RAM & GPU grants, and more!</p>
                             </div>
-                            <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-[1deg] transition-all duration-500 ease-out will-change-transform group cursor-default">
+                            <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu hover:bg-white/3 hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-1 transition-all duration-500 ease-out will-change-transform group cursor-default">
                                 <h4 class="font-heading text-3xl text-(--accent) mb-2 group-hover:drop-shadow-[0_0_16px_color-mix(in_srgb,var(--accent)_20%,transparent)] transition-all duration-500 text-right">hardware</h4>
                                 <!-- TODO: elaborate? -->
                                 <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-500">Design hardware that implements AI or ML and receive funding to build it! Earn bolts for your physical work!</p>
@@ -615,11 +615,11 @@
             </div>
 
             <!-- bottom border strip glow -->
-            <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
+            <div class="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
         </section>
 
         <!-- standard FAQ and closing info -->
-        <section id="faq" class="min-h-[100dvh] px-6 md:px-12 xl:px-24 py-24 pb-[220px] flex flex-col justify-start items-center relative">
+        <section id="faq" class="min-h-dvh px-6 md:px-12 xl:px-24 py-24 pb-55 flex flex-col justify-start items-center relative">
             <!-- pb-[220px] = calc(16px + 180px + 24px) -->
             <!-- faq -->
             <div class="max-w-7xl mx-auto w-full">
