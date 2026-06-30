@@ -163,8 +163,10 @@
 
     /** @param {number} index */
     const activateStep = (index) => {
+        if (activeStepIndex === index) return;
+
         activeStepIndex = index;
-        gsap.to("#step-progress", { yPercent: index * 100, duration: 0.2, ease: "power2.out" });
+        gsap.to("#step-progress", { yPercent: index * 100, duration: 0.2, ease: "power2.out", overwrite: true });
     };
 
     onMount(() => {
@@ -273,22 +275,45 @@
             };
         });
 
+        /** @type {Element[]} */
         const steps = gsap.utils.toArray(".step-item");
-        const stepTweens = steps.map((step, index) =>
-            gsap.to(step, {
-                opacity: 1,
-                duration: 0.3,
-                ease: "power1.inOut",
-                scrollTrigger: {
-                    trigger: step,
-                    start: "top center+=15%",
-                    end: "bottom center-=12%",
-                    toggleActions: "play reverse play reverse",
-                    onEnter: () => activateStep(index),
-                    onEnterBack: () => activateStep(index),
-                },
-            }),
-        );
+        const updateActiveStep = () => {
+            if (!steps.length) return;
+
+            const focusY = window.innerHeight * 0.52; // eye position
+            let closestIndex = 0;
+            let closestDistance = Number.POSITIVE_INFINITY;
+
+            // find closest
+            steps.forEach((step, index) => {
+                const rect = step.getBoundingClientRect();
+                const distance = Math.abs(rect.top + rect.height / 2 - focusY);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestIndex = index;
+                }
+            });
+
+            activateStep(closestIndex);
+        };
+
+        const stepStateTrigger = stepsSection
+            ? ScrollTrigger.create({
+                  trigger: stepsSection,
+                  start: "top bottom",
+                  end: "bottom top",
+                  onEnter: updateActiveStep,
+                  onEnterBack: updateActiveStep,
+                  onUpdate: updateActiveStep,
+                  onRefresh: updateActiveStep,
+                  onLeave: () => activateStep(steps.length - 1),
+                  onLeaveBack: () => activateStep(0),
+                  invalidateOnRefresh: true,
+              })
+            : undefined;
+
+        updateActiveStep();
 
         const stepProgressPin = ScrollTrigger.create({
             trigger: "#steps-progress-wrapper",
@@ -319,15 +344,12 @@
             // disable p5
             renderer.remove();
 
-            // disable tweens first
+            // FIRST disable tweens
             horizontalScrollTween?.scrollTrigger?.kill();
             horizontalScrollTween?.kill();
             horizontalScrollTween = undefined;
 
-            stepTweens.forEach((tween) => {
-                tween.scrollTrigger?.kill();
-                tween.kill();
-            });
+            stepStateTrigger?.kill();
 
             stepProgressPin?.kill();
 
@@ -422,7 +444,7 @@
                     <!-- TODO: figure out if we need to add 01 02 03 04 to each step? -->
 
                     <!-- steps -->
-                    <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 opacity-30 transition-opacity duration-700 ease-out">
+                    <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 transition-opacity duration-700 ease-out" class:opacity-100={activeStepIndex === 0} class:opacity-30={activeStepIndex !== 0}>
                         <div class="absolute">
                             <h1 class="relative font-mono font-medium text-7xl left-[-151px] top-[37px]">1</h1>
                         </div>
@@ -432,7 +454,7 @@
                         </p>
                     </div>
 
-                    <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 opacity-30 transition-opacity duration-700 ease-out">
+                    <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 transition-opacity duration-700 ease-out" class:opacity-100={activeStepIndex === 1} class:opacity-30={activeStepIndex !== 1}>
                         <div class="absolute">
                             <h1 class="relative font-mono font-medium text-7xl left-[-151px] top-[37px]">2</h1>
                         </div>
@@ -442,7 +464,7 @@
                         </p>
                     </div>
 
-                    <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 opacity-30 transition-opacity duration-700 ease-out">
+                    <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 transition-opacity duration-700 ease-out" class:opacity-100={activeStepIndex === 2} class:opacity-30={activeStepIndex !== 2}>
                         <div class="absolute">
                             <h1 class="relative font-mono font-medium text-7xl left-[-151px] top-[59px]">3</h1>
                         </div>
@@ -452,7 +474,7 @@
                         </p>
                     </div>
 
-                    <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 opacity-30 transition-opacity duration-700 ease-out">
+                    <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 transition-opacity duration-700 ease-out" class:opacity-100={activeStepIndex === 3} class:opacity-30={activeStepIndex !== 3}>
                         <div class="absolute">
                             <h1 class="relative font-mono font-medium text-7xl left-[-151px] top-[59px]">4</h1>
                         </div>
