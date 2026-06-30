@@ -6,7 +6,7 @@
     import { ScrollSmoother } from "gsap/ScrollSmoother";
     import { ScrollToPlugin } from "gsap/ScrollToPlugin";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
-    import { Mouse, ChevronDown } from "lucide-svelte";
+    import { Mouse, ChevronDown, Hammer, Lightbulb, Trophy, Truck } from "lucide-svelte";
     import p5 from "p5";
 
     import hackclub from "./assets/hackclub.svg";
@@ -56,9 +56,6 @@
     ];
 
     let activeEvent = $derived(events[carouselIndex]);
-
-    const stepVisuals = ["Step 1 visual placeholder", "Step 2 visual placeholder", "Step 3 visual placeholder", "Step 4 visual placeholder"];
-    let activeStepVisual = $derived(stepVisuals[activeStepIndex] ?? stepVisuals[0]);
 
     // TODO: change header font for timeline or figure out a diff way to represent
     // NOTE: looks shitty asf, i think it's bc of Unbounded header font -@technodot
@@ -425,7 +422,7 @@
                     <!-- TODO: figure out if we need to add 01 02 03 04 to each step? -->
 
                     <!-- steps -->
-                    <div class="step-item min-h-[60vh] flex flex-col justify-center pl-12 opacity-30 transition-opacity duration-700 ease-out">
+                    <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 opacity-30 transition-opacity duration-700 ease-out">
                         <div class="absolute">
                             <h1 class="relative font-mono font-medium text-7xl left-[-151px] top-[37px]">1</h1>
                         </div>
@@ -471,9 +468,29 @@
                 <div class="w-1/2 relative h-full">
                     <div bind:this={stepsVisual} class="relative flex aspect-square w-full items-center justify-center overflow-hidden border-2 border-(--accent) bg-white/1">
                         {#key activeStepIndex}
-                            <span transition:fade={{ duration: 200 }} class="absolute inset-0 flex items-center justify-center px-8 text-center font-mono text-(--text-h) will-change-opacity">
-                                {activeStepVisual}
-                            </span>
+                            <section transition:fade={{ duration: 200 }} class="absolute inset-0 flex flex-col items-center justify-center gap-3 px-8 text-center font-mono text-(--text-h) will-change-opacity">
+                                {#if activeStepIndex === 0}
+                                    <div class="relative h-[78%] w-[78%]">
+                                        <img src={mascotDark} alt="anomaly having an idea" class="absolute bottom-[15%] left-[calc(50%+18px)] h-[58%] -translate-x-1/2 object-contain" />
+                                        <Lightbulb class="absolute left-1/2 top-[15%] h-24 w-24 -translate-x-1/2 text-(--accent-hover) drop-shadow-[0_0_52px_color-mix(in_srgb,var(--accent-hover)_70%,transparent)]" strokeWidth={1.8} />
+                                    </div>
+                                {:else if activeStepIndex === 1}
+                                    <div class="relative h-[78%] w-[78%]">
+                                        <Hammer class="absolute bottom-[48%] left-[calc(50%+120px)] h-24 w-24 -translate-x-1/2 text-(--accent-hover) drop-shadow-[0_0_24px_color-mix(in_srgb,var(--accent-hover)_10%,transparent)]" strokeWidth={1.9} />
+                                        <img src={mascotDark} alt="anomaly holding a hammer" class="absolute bottom-[23%] left-[calc(50%-24px)] h-[56%] -translate-x-1/2 object-contain" />
+                                    </div>
+                                {:else if activeStepIndex === 2}
+                                    <div class="relative h-[68%] w-[84%]">
+                                        <Truck class="absolute bottom-[22%] left-1/2 h-[52%] w-[86%] -translate-x-1/2 text-(--accent-hover) drop-shadow-[0_0_52px_color-mix(in_srgb,var(--accent-hover)_20%,transparent)]" strokeWidth={1.8} />
+                                        <img src={mascotDark} alt="anomaly logo on truck side" class="absolute bottom-[42%] left-[42.5%] h-[20%] -translate-x-1/2 object-contain" />
+                                    </div>
+                                {:else}
+                                    <div class="relative h-[78%] w-[48%]">
+                                        <img src={mascotDark} alt="anomaly with a reward" class="absolute bottom-[16%] left-[calc(50%-18px)] h-[58%] -translate-x-1/2 object-contain" />
+                                        <Trophy class="absolute left-[calc(50%-10px)] top-[19%] h-24 w-24 -translate-x-1/2 text-(--accent-hover) drop-shadow-[0_0_34px_color-mix(in_srgb,var(--accent-hover)_48%,transparent)]" strokeWidth={1.8} />
+                                    </div>
+                                {/if}
+                            </section>
                         {/key}
                     </div>
                 </div>
