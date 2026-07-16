@@ -15,7 +15,10 @@
     import undercity from "./assets/events/undercity.webp";
     import mascotDark from "./assets/mascot_dark.svg";
     import orpheus from "./assets/orpheus.svg";
-    import Event from "./lib/Event.svelte";
+
+    import itemRaspberryPi from "./assets/items/raspberry-pi.png";
+
+    import Item from "./lib/Item.svelte";
     import Question from "./lib/Question.svelte";
 
     /** @type {HTMLElement | undefined} */
@@ -24,8 +27,8 @@
     let horizontalScroller;
     /** @type {HTMLElement | undefined} */
     let horizontalSection;
-    /** @type {gsap.core.Tween | undefined} */
-    let horizontalScrollTween = $state(undefined);
+    /** @type {HTMLDivElement | undefined} */
+    let prizeScroller;
     /** @type {HTMLElement | undefined} */
     let stepsSection;
     /** @type {HTMLDivElement | undefined} */
@@ -57,110 +60,6 @@
 
     let activeEvent = $derived(events[carouselIndex]);
 
-    // TODO: change header font for timeline or figure out a diff way to represent
-    // NOTE: looks shitty asf, i think it's bc of Unbounded header font -@technodot
-    const timeline = [
-        {
-            left: "5dvw",
-            placement: "top",
-            date: "TODO",
-            title: "REMOVE THIS TIMELINE",
-            description: "Replace it with useful content: project ideas/potential prizes",
-        },
-        {
-            left: "20dvw",
-            placement: "bottom",
-            date: "AUG 2021",
-            title: "GPT-3 CODEX RELEASED",
-            description: "The very first Codex model was released; a code-specialized version of GPT-3.",
-        },
-        {
-            left: "25dvw",
-            placement: "top",
-            date: "JUN 2021",
-            title: "GITHUB COPILOT RELEASED",
-            description: "Leveraging GPT-3 Codex, GitHub Copilot offered seamless integration of AI into coding.",
-        },
-        {
-            left: "40dvw",
-            placement: "bottom",
-            date: "NOV 30, 2022",
-            title: "CHATGPT RELEASED",
-            description: "Drew global public attention towards Artifical Intelligence and its potential capabilities.",
-        },
-        {
-            left: "50dvw",
-            placement: "top",
-            date: "MAR 2023",
-            title: "CURSOR RELEASED",
-            description: "The first replacement of traditional code editors with a more AI-oriented solution.",
-        },
-        {
-            left: "60dvw",
-            placement: "bottom",
-            date: "MAR 2024",
-            title: "DEVIN RELEASED",
-            description: "The world's first fully autonomous AI software engineer, operating with minimal human intervention.",
-        },
-        {
-            left: "80dvw",
-            placement: "top",
-            date: "FEB 2025",
-            title: "VIBECODING TERMED",
-            description: 'AI researcher Andrej Karpathy coins the term "vibe coding" where users just talk to AI and forget the actual code exists.',
-        },
-        {
-            left: "80dvw",
-            placement: "bottom",
-            date: "FEB 2025",
-            title: "AI SLOP BUILDERS",
-            description: "Tools like Base44 that allow anybody to build AI-powered applications without understanding any code.",
-        },
-        {
-            left: "100dvw",
-            placement: "top",
-            date: "MAR 2025",
-            title: "AI SECURITY SLOP",
-            description: "curl founder Daniel Stenberg bans AI-generated security reports and condemns the tide of AI slop being submitted.",
-        },
-        {
-            left: "105dvw",
-            placement: "bottom",
-            date: "2025",
-            title: "VULNNERABLE CODE",
-            description: "A noticeably sharp uptick in security vulnerabilities reported in AI-generated code, some even actively exploited.",
-        },
-        {
-            left: "120dvw",
-            placement: "top",
-            date: "DEC 2025",
-            title: "KIRO BREAKS AWS",
-            description: "Amazon's internal AI coding agent deleted part of AWS's production infra and rebuilt it, leading to a 13 hour outage.",
-        },
-        {
-            left: "125dvw",
-            placement: "bottom",
-            date: "FEB 2026",
-            title: "AI BUBBLE?",
-            description: "Forecasted >$6T in 2026 global spending. While 88% of organizations experiment with AI, 81% do not report any meaningful gains.",
-            href: "https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-state-of-organizations",
-        },
-        {
-            left: "145dvw",
-            placement: "top",
-            date: "MAR 2026",
-            title: "KIRO BREAKS AMAZON",
-            description: "6.3 million orders were lost across North America.",
-        },
-        {
-            left: "145dvw",
-            placement: "bottom",
-            date: "MAR 2026",
-            title: "AI FRUIT LOVE ISLAND",
-            description: "no.",
-        },
-    ];
-
     /** @param {number} index */
     const activateStep = (index) => {
         if (activeStepIndex === index) return;
@@ -183,22 +82,39 @@
 
         const scrollerEl = horizontalScroller;
         const scrollerSectionEl = horizontalSection;
-        horizontalScrollTween =
+        const prizeScrollerEl = prizeScroller;
+        const horizontalScrollTimeline =
             scrollerEl &&
             scrollerSectionEl &&
-            gsap.to(scrollerEl, {
-                x: () => -Math.max(0, scrollerEl.scrollWidth - scrollerSectionEl.clientWidth),
-                ease: "none",
-                scrollTrigger: {
-                    trigger: scrollerSectionEl,
-                    start: "top top",
-                    end: () => `+=${Math.max(0, scrollerEl.scrollWidth - scrollerSectionEl.clientWidth)}`,
-                    scrub: true,
-                    pin: true,
-                    anticipatePin: 1,
-                    invalidateOnRefresh: true,
-                },
-            });
+            prizeScrollerEl &&
+            gsap
+                .timeline({
+                    scrollTrigger: {
+                        trigger: scrollerSectionEl,
+                        start: "top top",
+                        end: () => `+=${Math.max(0, scrollerEl.scrollWidth - scrollerSectionEl.clientWidth)}`,
+                        scrub: true,
+                        pin: true,
+                        anticipatePin: 1,
+                        invalidateOnRefresh: true,
+                    },
+                })
+                .to(
+                    scrollerEl,
+                    {
+                        x: () => -Math.max(0, scrollerEl.clientWidth - scrollerSectionEl.clientWidth),
+                        ease: "none",
+                    },
+                    0,
+                )
+                .to(
+                    prizeScrollerEl,
+                    {
+                        x: () => window.innerWidth * 0.5, // as the user scrolls the content to the left, we scroll items 50% to the right to net appear a 50% scroll left. cool, right?
+                        ease: "none",
+                    },
+                    0,
+                );
 
         const renderer = new p5((p) => {
             /** @typedef {{ x: number; y: number; vx: number; vy: number }} CloudPoint */
@@ -345,9 +261,8 @@
             renderer.remove();
 
             // FIRST disable tweens
-            horizontalScrollTween?.scrollTrigger?.kill();
-            horizontalScrollTween?.kill();
-            horizontalScrollTween = undefined;
+            horizontalScrollTimeline?.scrollTrigger?.kill();
+            horizontalScrollTimeline?.kill();
 
             stepStateTrigger?.kill();
 
@@ -451,7 +366,7 @@
                                 <span class="font-content font-light text-sm tracking-widest">previous events!</span>
                                 <h2 class="font-mono font-medium text-xl md:text-3xl text-(--text) leading-tight">{activeEvent.label}</h2>
                             </div>
-                            <div class="pointer-events-auto flex gap-2" role="group" aria-label="Event carousel controls">
+                            <div class="pointer-events-auto flex gap-2 translate-y-2" role="group" aria-label="Event carousel controls">
                                 {#each events as event, index (event.label)}
                                     <button type="button" onclick={() => (carouselIndex = index)} aria-label={`Show ${event.label}`} aria-pressed={index === carouselIndex} class="flex h-5 w-10 items-center rounded-full border-none bg-transparent p-0 opacity-80 transition-opacity duration-200 hover:opacity-100 focus:outline-none focus-visible:shadow-[0_0_0_2px_var(--accent)] cursor-pointer">
                                         <span class={`h-1.5 w-full rounded-full transition-all duration-200 ${index === carouselIndex ? "bg-(--accent)" : "bg-(--accent-border)/50"}`}></span>
@@ -482,7 +397,7 @@
                     <!-- steps progress bar -->
                     <div class="absolute inset-y-0 left-0 w-1 z-20">
                         <div id="steps-progress-wrapper" class="w-full h-[50vh] min-h-[50dvh] bg-(--code-bg)">
-                            <div id="step-progress" class="w-full h-1/4 bg-(--accent) shadow-[0_0_50px_color-mix(in_srgb,var(--accent)_50%,transparent)]" style="transform: translateY(0%);"></div>
+                            <div id="step-progress" class="w-full h-1/4 bg-(--accent) shadow-[0_0_50px_color-mix(in_srgb,var(--accent)_20%,transparent)]" style="transform: translateY(0%);"></div>
                         </div>
                     </div>
 
@@ -565,31 +480,13 @@
             </div>
         </section>
 
-        <!-- timeline -->
-        <section bind:this={horizontalSection} class="min-h-dvh flex flex-col justify-center items-center relative overflow-hidden bg-black/80">
+        <!-- horizontal section -->
+        <section bind:this={horizontalSection} class="min-h-dvh flex flex-col relative overflow-hidden bg-black/80">
             <!-- top border strip glow -->
             <div class="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
 
-            <div class="w-full overflow-hidden flex-1 relative">
-                <div id="horizontal-scroller" bind:this={horizontalScroller} class="w-[200dvw] max-w-none flex items-center h-full relative">
-                    <!-- timeline -->
-                    <!-- TODO: deprecate this shit -->
-                    <!-- TODO: replace with project ideas and prizes -->
-                    <div class="absolute inset-0 translate-x-[50dvw]">
-                        <!-- base timeline line -->
-                        <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 block h-0.5 w-[calc(150dvw-8px)] bg-(--text-h)"></div>
-
-                        <!-- timeline events -->
-                        {#each timeline as event (event.title)}
-                            <Event {...event} scrollTween={horizontalScrollTween} />
-                        {/each}
-
-                        <!-- closing node (i.e. present) -->
-                        <div class="absolute top-1/2 left-[150dvw] z-10 hover:z-20 group">
-                            <div class="absolute w-4 h-4 rounded-full border-2 border-(--accent) -translate-x-1/2 -translate-y-1/2 transition-transform"></div>
-                        </div>
-                    </div>
-
+            <div class="w-full overflow-hidden flex-1">
+                <div bind:this={horizontalScroller} class="w-[200dvw] h-full absolute overflow-hidden">
                     <!-- left content -->
                     <div class="absolute top-1/2 left-[5dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45dvw] z-10 flex flex-col items-start text-left">
                         <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
@@ -617,10 +514,36 @@
                         </div>
 
                         <div class="flex gap-5 mt-8">
-                            <button onclick={() => gsap.to(window, { duration: .3, scrollTo: { y: '#faq', autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> LEARN MORE </button>
-                            <button onclick={() => gsap.to(window, { duration: .7, scrollTo: { y: 0, autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> REGISTER NOW </button>
+                            <button onclick={() => gsap.to(window, { duration: .67, scrollTo: { y: '#faq', autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> LEARN MORE </button>
+                            <button onclick={() => gsap.to(window, { duration: 1, scrollTo: { y: 0, autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> REGISTER NOW </button>
                         </div>
                     </div>
+
+                    <!-- prizes -->
+                    <div class="z-10 relative top-53 h-[384px] w-800 rotate-25 overflow-hidden">
+                        <div bind:this={prizeScroller} class="h-full min-w-full w-max border-t border-b border-(--code-bg) flex py-4 gap-4">
+                            <!-- TODO: fill shop -->
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                        </div>
+                    </div>
+
+                    <!-- TODO: project scroller -->
+                    <!-- TODO: right content -->
                 </div>
             </div>
 
