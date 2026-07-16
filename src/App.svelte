@@ -494,7 +494,7 @@
                             <!-- <h1 class="relative font-mono font-medium text-7xl -left-37.75 top-9.25">1</h1> -->
                         </div>
                         <h2 class="font-content font-medium text-4xl text-(--text) mb-4">Inspire to create</h2>
-                        <p class="font-content font-light text-base text-(--text) leading-relaxed tracking-wide">
+                        <p class="font-content font-light text-lg text-(--text) leading-relaxed tracking-wide">
                             Brainstorm an innovative and interesting idea! Explore practical scenarios in which AI could actually make a productive difference.
                         </p>
                     </div>
@@ -504,8 +504,8 @@
                             <!-- <h1 class="relative font-mono font-medium text-7xl -left-37.75 top-9.25">2</h1> -->
                         </div>
                         <h2 class="font-content font-medium text-4xl text-(--text) mb-4">Build your project</h2>
-                        <p class="font-content font-light text-base text-(--text) leading-relaxed tracking-wide">
-                            Bring your idea to life through code and hardware! If you're making a hardware project and can't cover parts, we've got your back with a funding grant.
+                        <p class="font-content font-light text-lg text-(--text) leading-relaxed tracking-wide">
+                            Bring your idea to life through code and hardware! If you're making a hardware project, you're eligible for a funding grant.
                         </p>
                     </div>
 
@@ -514,8 +514,8 @@
                             <!-- <h1 class="relative font-mono font-medium text-7xl -left-37.75 top-9.25">3</h1> -->
                         </div>
                         <h2 class="font-content font-medium text-4xl text-(--text) mb-4">Ship to the universe</h2>
-                        <p class="font-content font-light text-base text-(--text) leading-relaxed tracking-wide">
-                            Show off your finished project! Also, check out what other amazing projects by other teenage inventors (like yourself!) have been building and shipping.
+                        <p class="font-content font-light text-lg text-(--text) leading-relaxed tracking-wide">
+                            Show off your finished project! Also, check out what other amazing projects by other teenage inventors have been building and shipping.
                         </p>
                     </div>
 
@@ -524,7 +524,7 @@
                             <!-- <h1 class="relative font-mono font-medium text-7xl -left-37.75 top-9.25">4</h1> -->
                         </div>
                         <h2 class="font-content font-medium text-4xl text-(--text) mb-4">Claim your rewards</h2>
-                        <p class="font-content font-light text-base text-(--text) leading-relaxed tracking-wide">
+                        <p class="font-content font-light text-lg text-(--text) leading-relaxed tracking-wide">
                             You did it! In exchange for helping take AI to the next level, receive Bolts to get DDR5 RAM, AI credits, or perhaps an RTX 5090!
                         </p>
                     </div>
