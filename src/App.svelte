@@ -421,7 +421,6 @@
             <div class="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67 z-10"></div>
         </section>
 
-        <!-- TODO: vertical step by step scroll -->
         <section bind:this={stepsSection} class="min-h-dvh flex flex-col items-center overflow-hidden w-full" id="steps-section">
             <div class="w-full max-w-7xl mx-auto flex flex-row relative py-32 px-6 lg:[--steps-copy-width:calc((min(100dvw,80rem)-12rem)/2)] lg:w-[calc(var(--steps-copy-width)+var(--steps-copy-width)-8rem)] lg:max-w-none lg:px-0">
                 
@@ -434,8 +433,6 @@
                             <div id="step-progress" class="w-full h-1/4 bg-(--accent) shadow-[0_0_20px_color-mix(in_srgb,var(--accent)_3%,transparent)]" style="transform: translateY(0%);"></div>
                         </div>
                     </div>
-
-                    <!-- TODO: figure out if we need to add 01 02 03 04 to each step? -->
 
                     <!-- steps -->
                     <div class="step-item min-h-[60dvh] flex flex-col justify-center pl-12 transition-opacity duration-700 ease-out" class:opacity-100={activeStepIndex === 0} class:opacity-30={activeStepIndex !== 0}>
@@ -522,6 +519,7 @@
             <div class="w-full overflow-hidden flex-1">
                 <div bind:this={horizontalScroller} class="horizontal-scroller h-full absolute overflow-hidden">
                     <!-- left content -->
+                    <!-- TODO: rewrite ts slop -->
                     <div class="absolute top-1/2 left-[5dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45dvw] z-10 flex flex-col items-start text-left">
                         <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
                             <span class="italic">DE</span>SLOP THE<br />
@@ -534,15 +532,12 @@
                         </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 w-full max-w-3xl">
-                            <!-- TODO: instead of shifting up on hover, make it lighten up -->
                             <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-1 transition-all duration-300 ease-out will-change-transform group cursor-default">
                                 <h4 class="font-heading text-3xl text-(--accent) mb-2 text-left">software</h4>
-                                <!-- TODO: elaborate? -->
                                 <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-300">Build software that implements AI or ML to earn Bolts! Use them to buy Raspberry Pis, API credits, RAM & GPU grants, and more!</p>
                             </div>
                             <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-1 transition-all duration-300 ease-out will-change-transform group cursor-default">
                                 <h4 class="font-heading text-3xl text-(--accent) mb-2 text-left">hardware</h4>
-                                <!-- TODO: elaborate? -->
                                 <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-300">Design hardware that implements AI or ML and receive funding to build it! Earn bolts for your physical work!</p>
                             </div>
                         </div>
@@ -575,6 +570,7 @@
                     </div>
 
                     <!-- right content -->
+                    <!-- TODO: rewrite ts slop -->
                     <div class="absolute top-[42%] right-[5dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45dvw] z-10 flex flex-col items-end text-right selection:!bg-(--accent)">
                         <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
                             <span class="italic">DE</span>SLOP THE<br />
@@ -608,9 +604,6 @@
                     <div class="absolute top-0 left-0 font-heading font-regular text-5xl md:text-6xl text-(--accent)" style="transform: translate(6px, 3px);">FAQ</div>
                     <!-- offset text -->
                 </div>
-
-                <!-- TODO: answer more flipping questions -->
-                <!-- TODO: also make actually look nice -->
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-24 gap-y-0 w-full">
                     <!-- column 1 -->
