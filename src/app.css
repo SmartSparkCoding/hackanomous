@@ -28,6 +28,11 @@
     --accent-border: #67887c;
     --social-bg: rgba(11, 22, 24, 0.5);
     --shadow: rgba(0, 0, 0, 0.3) 0 10px 15px -3px, rgba(0, 0, 0, 0.2) 0 4px 6px -2px;
+    --secondary: #9333ea;
+    --secondary-bg: #4c245d;
+    --secondary-text: #ae8ed5;
+    --secondary-border: #5e327d;
+    --secondary-hover: #ac5dff;
 
     --heading: "Unbounded", "Segoe UI", Roboto, system-ui, sans-serif;
     --sans: "Lexend", "Segoe UI", Roboto, system-ui, sans-serif;

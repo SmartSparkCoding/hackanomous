@@ -18,6 +18,7 @@
 
     import itemRaspberryPi from "./assets/items/raspberry-pi.png";
 
+    import Project from "./lib/Project.svelte";
     import Item from "./lib/Item.svelte";
     import Question from "./lib/Question.svelte";
 
@@ -27,6 +28,8 @@
     let horizontalScroller;
     /** @type {HTMLElement | undefined} */
     let horizontalSection;
+    /** @type {HTMLDivElement | undefined} */
+    let projectScroller;
     /** @type {HTMLDivElement | undefined} */
     let prizeScroller;
     /** @type {HTMLElement | undefined} */
@@ -57,6 +60,7 @@
             link: "https://www.youtube.com/watch?v=kaEFv7e49mo",
         },
     ];
+    const scrollerItemIndexes = Array.from({ length: 32 }, (_, index) => index);
 
     let activeEvent = $derived(events[carouselIndex]);
 
@@ -82,38 +86,68 @@
 
         const scrollerEl = horizontalScroller;
         const scrollerSectionEl = horizontalSection;
+        const projectScrollerEl = projectScroller;
         const prizeScrollerEl = prizeScroller;
+        const horizontalScrollHold = { progress: 0 };
+        const getHorizontalScrollDistance = () => Math.max(0, (scrollerEl?.scrollWidth ?? 0) - (scrollerSectionEl?.clientWidth ?? 0));
         const horizontalScrollTimeline =
             scrollerEl &&
             scrollerSectionEl &&
+            projectScrollerEl &&
             prizeScrollerEl &&
             gsap
                 .timeline({
                     scrollTrigger: {
                         trigger: scrollerSectionEl,
                         start: "top top",
-                        end: () => `+=${Math.max(0, scrollerEl.scrollWidth - scrollerSectionEl.clientWidth)}`,
+                        end: () => `+=${getHorizontalScrollDistance() * 1.08}`,
                         scrub: true,
                         pin: true,
                         anticipatePin: 1,
                         invalidateOnRefresh: true,
                     },
                 })
+                .to(horizontalScrollHold, {
+                    progress: 1,
+                    duration: 0.05,
+                    ease: "none",
+                })
+                .addLabel("travel")
                 .to(
                     scrollerEl,
                     {
-                        x: () => -Math.max(0, scrollerEl.clientWidth - scrollerSectionEl.clientWidth),
+                        x: () => -getHorizontalScrollDistance(),
+                        duration: 1,
                         ease: "none",
                     },
-                    0,
+                    "travel",
+                )
+                .to(
+                    projectScrollerEl,
+                    {
+                        x: () => window.innerWidth * 1.0, // +counterstage motion: as the user scrolls the content to the left, we scroll items 50% to the right to net appear a 50% scroll left. cool, right?
+                        duration: 1,
+                        ease: "none",
+                    },
+                    "travel",
                 )
                 .to(
                     prizeScrollerEl,
                     {
-                        x: () => window.innerWidth * 0.5, // as the user scrolls the content to the left, we scroll items 50% to the right to net appear a 50% scroll left. cool, right?
+                        x: () => window.innerWidth * -0.5, // -withstage motion: pretty much same as above note, just inverted vfx rate
+                        duration: 1,
                         ease: "none",
                     },
-                    0,
+                    "travel",
+                )
+                .to(
+                    horizontalScrollHold,
+                    {
+                        progress: 2,
+                        duration: 0.05,
+                        ease: "none",
+                    },
+                    "travel+=1",
                 );
 
         const renderer = new p5((p) => {
@@ -305,8 +339,8 @@
         <!-- landing -->
         <section class="relative min-h-dvh flex justify-center items-center py-12 px-4">
             <div class="relative">
-                <div class="w-fit border-2 border-dashed border-(--code-bg) rounded-2xl px-16 py-2 relative z-10 -ml-24 -rotate-5 bg-[linear-gradient(175deg,var(--bg)_0%,#0B161850_33%,#080E1280_100%)]">
-                    <h3 class="font-mono font-extralight text-sm text-(--text-h) tracking-widest">coming soon!</h3>
+                <div class="w-fit border border-(--code-bg) rounded-2xl px-16 py-2 relative z-10 -ml-24 -rotate-5 bg-[linear-gradient(175deg,var(--bg)_0%,#0B161850_33%,#080E1280_100%)]">
+                    <h3 class="font-content font-extralight text-sm text-(--text-h) tracking-widest">coming soon!</h3>
                 </div>
                 <div class="flex">
                     <div class="text-right">
@@ -397,7 +431,7 @@
                     <!-- steps progress bar -->
                     <div class="absolute inset-y-0 left-0 w-1 z-20">
                         <div id="steps-progress-wrapper" class="w-full h-[50vh] min-h-[50dvh] bg-(--code-bg)">
-                            <div id="step-progress" class="w-full h-1/4 bg-(--accent) shadow-[0_0_50px_color-mix(in_srgb,var(--accent)_20%,transparent)]" style="transform: translateY(0%);"></div>
+                            <div id="step-progress" class="w-full h-1/4 bg-(--accent) shadow-[0_0_20px_color-mix(in_srgb,var(--accent)_3%,transparent)]" style="transform: translateY(0%);"></div>
                         </div>
                     </div>
 
@@ -486,7 +520,7 @@
             <div class="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
 
             <div class="w-full overflow-hidden flex-1">
-                <div bind:this={horizontalScroller} class="w-[200dvw] h-full absolute overflow-hidden">
+                <div bind:this={horizontalScroller} class="horizontal-scroller h-full absolute overflow-hidden">
                     <!-- left content -->
                     <div class="absolute top-1/2 left-[5dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45dvw] z-10 flex flex-col items-start text-left">
                         <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
@@ -519,31 +553,43 @@
                         </div>
                     </div>
 
-                    <!-- prizes -->
-                    <div class="z-10 relative top-53 h-[384px] w-800 rotate-25 overflow-hidden">
-                        <div bind:this={prizeScroller} class="h-full min-w-full w-max border-t border-b border-(--code-bg) flex py-4 gap-4">
-                            <!-- TODO: fill shop -->
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                            <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                    <!-- projects -->
+                    <div class="project-lane z-10 relative rotate-25 overflow-hidden">
+                        <div bind:this={projectScroller} class="h-full min-w-full w-max border border-(--code-bg) flex p-4 gap-4 rounded-bl-3xl">
+                            <!-- TODO: fill projects -->
+                            <!-- TODO: differentiate from items/shop bc i lit just copypasted it for now -->
+                            {#each scrollerItemIndexes as index (`project-${index}`)}
+                                <Project label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            {/each}
                         </div>
                     </div>
 
-                    <!-- TODO: project scroller -->
-                    <!-- TODO: right content -->
+                    <!-- prizes -->
+                    <div class="prize-lane z-10 relative rotate-25 overflow-hidden">
+                        <div bind:this={prizeScroller} class="h-full min-w-full w-max border border-(--secondary-bg) flex p-4 gap-4">
+                            <!-- TODO: fill shop -->
+                            {#each scrollerItemIndexes as index (`prize-${index}`)}
+                                <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                            {/each}
+                        </div>
+                    </div>
+
+                    <!-- right content -->
+                    <div class="absolute top-[42%] right-[5dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45dvw] z-10 flex flex-col items-end text-right selection:!bg-(--accent)">
+                        <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
+                            <span class="italic">DE</span>SLOP THE<br />
+                            <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--secondary)_0%,color-mix(in_srgb,var(--secondary)_67%,transparent)_100%)]">WORLD.</span>
+                        </h2>
+
+                        <p class="font-mono font-normal text-lg md:text-xl leading-relaxed text-(--secondary-text) mt-6 max-w-2xl">
+                            the AI bubble might just be about to pop.<br />
+                            <span class="font-bold text-(--secondary-text)">YOUR MISSION:</span> build projects incorporating AI that solve <u><span class="font-bold text-(--secondary-text)">real-world</span></u> problems.
+                        </p>
+
+                        <div class="flex gap-5 mt-8">
+                            <button onclick={() => gsap.to(window, { duration: 1, scrollTo: { y: 0, autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--secondary) text-(--secondary) hover:bg-(--secondary) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--secondary)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> SEE THE FULL SHOP </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -653,6 +699,33 @@
 </div>
 
 <style>
+    .horizontal-scroller {
+        --viewport-height-growth: clamp(0px, calc(100dvh - 960px), 1200px);
+        --lane-height: 384px;
+        --lane-width: calc(200rem + var(--viewport-height-growth) * 2.3662015832);
+        --lane-origin-x: 100rem;
+        --project-lane-y: 13.25rem;
+        --prize-lane-y: 236px;
+        --prize-lane-x: 900px;
+        width: calc(var(--prize-lane-x) + var(--lane-width));
+    }
+
+    .prize-lane, .project-lane {
+        width: var(--lane-width);
+        height: var(--lane-height);
+        transform-origin: var(--lane-origin-x) 50%;
+    }
+
+    .project-lane {
+        top: var(--project-lane-y);
+    }
+
+    .prize-lane {
+        /* (sin 25deg, −cos 25deg) */
+        top: calc(var(--prize-lane-y) - var(--lane-height) - 0.906307787rem);
+        left: calc(var(--prize-lane-x) + 0.422618262rem);
+    }
+
     .floater {
         animation: float 3s ease-in-out infinite;
     }
