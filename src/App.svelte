@@ -3,7 +3,6 @@
     import { fade } from "svelte/transition";
 
     import { gsap } from "gsap";
-    import { ScrollSmoother } from "gsap/ScrollSmoother";
     import { ScrollToPlugin } from "gsap/ScrollToPlugin";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     import { Mouse, ChevronDown, Hammer, Lightbulb, Trophy, Truck } from "lucide-svelte";
@@ -36,8 +35,6 @@
     let stepsSection;
     /** @type {HTMLDivElement | undefined} */
     let stepsVisual;
-    /** @type {ScrollSmoother} */
-    let smoothie;
     let carouselIndex = $state(0);
     let activeStepIndex = $state(0);
 
@@ -60,8 +57,6 @@
             link: "https://www.youtube.com/watch?v=kaEFv7e49mo",
         },
     ];
-    const scrollerItemIndexes = Array.from({ length: 32 }, (_, index) => index);
-
     let activeEvent = $derived(events[carouselIndex]);
 
     /** @param {number} index */
@@ -72,84 +67,12 @@
         gsap.to("#step-progress", { yPercent: index * 100, duration: 0.2, ease: "power2.out", overwrite: true });
     };
 
+    const scrollerItemIndexes = Array.from({ length: 32 }, (_, index) => index); // TODO: replace with actual items/projects
+
     onMount(() => {
-        const carouselTimer = window.setInterval(() => {
-            carouselIndex = (carouselIndex + 1) % events.length;
-        }, 5 * 1000);
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
-        // smoothie = ScrollSmoother.create({
-        //     smooth: 1,
-        //     effects: true,
-        //     normalizeScroll: true,
-        // });
-
-        const scrollerEl = horizontalScroller;
-        const scrollerSectionEl = horizontalSection;
-        const projectScrollerEl = projectScroller;
-        const prizeScrollerEl = prizeScroller;
-        const horizontalScrollHold = { progress: 0 };
-        const getHorizontalScrollDistance = () => Math.max(0, (scrollerEl?.scrollWidth ?? 0) - (scrollerSectionEl?.clientWidth ?? 0));
-        const horizontalScrollTimeline =
-            scrollerEl &&
-            scrollerSectionEl &&
-            projectScrollerEl &&
-            prizeScrollerEl &&
-            gsap
-                .timeline({
-                    scrollTrigger: {
-                        trigger: scrollerSectionEl,
-                        start: "top top",
-                        end: () => `+=${getHorizontalScrollDistance() * 1.08}`,
-                        scrub: true,
-                        pin: true,
-                        anticipatePin: 1,
-                        invalidateOnRefresh: true,
-                    },
-                })
-                .to(horizontalScrollHold, {
-                    progress: 1,
-                    duration: 0.05,
-                    ease: "none",
-                })
-                .addLabel("travel")
-                .to(
-                    scrollerEl,
-                    {
-                        x: () => -getHorizontalScrollDistance(),
-                        duration: 1,
-                        ease: "none",
-                    },
-                    "travel",
-                )
-                .to(
-                    projectScrollerEl,
-                    {
-                        x: () => window.innerWidth * 1.0, // +counterstage motion: as the user scrolls the content to the left, we scroll items 50% to the right to net appear a 50% scroll left. cool, right?
-                        duration: 1,
-                        ease: "none",
-                    },
-                    "travel",
-                )
-                .to(
-                    prizeScrollerEl,
-                    {
-                        x: () => window.innerWidth * -0.5, // -withstage motion: pretty much same as above note, just inverted vfx rate
-                        duration: 1,
-                        ease: "none",
-                    },
-                    "travel",
-                )
-                .to(
-                    horizontalScrollHold,
-                    {
-                        progress: 2,
-                        duration: 0.05,
-                        ease: "none",
-                    },
-                    "travel+=1",
-                );
-
+        // begin visual
         const renderer = new p5((p) => {
             /** @typedef {{ x: number; y: number; vx: number; vy: number }} CloudPoint */
             const LINK_DISTANCE = 143.11; // +25% of 128 (nonlinear!)
@@ -225,6 +148,12 @@
             };
         });
 
+        // begin events
+        const eventTimer = window.setInterval(() => {
+            carouselIndex = (carouselIndex + 1) % events.length;
+        }, 5000);
+
+        // begin steps
         /** @type {Element[]} */
         const steps = gsap.utils.toArray(".step-item");
         const updateActiveStep = () => {
@@ -275,7 +204,7 @@
             invalidateOnRefresh: true,
         });
 
-        const stepsVisualPinTrigger =
+        const stepPinTrigger =
             stepsSection &&
             stepsVisual &&
             ScrollTrigger.create({
@@ -287,25 +216,85 @@
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
             });
+        
+        // begin scroller
+        const scrollerEl = horizontalScroller;
+        const scrollerSectionEl = horizontalSection;
+        const projectScrollerEl = projectScroller;
+        const prizeScrollerEl = prizeScroller;
+        const scrollHold = { progress: 0 };
+        const getScrollDistance = () => Math.max(0, (scrollerEl?.scrollWidth ?? 0) - (scrollerSectionEl?.clientWidth ?? 0));
+        const scrollTimeline =
+            scrollerEl &&
+            scrollerSectionEl &&
+            projectScrollerEl &&
+            prizeScrollerEl &&
+            gsap
+                .timeline({
+                    scrollTrigger: {
+                        trigger: scrollerSectionEl,
+                        start: "top top",
+                        end: () => `+=${getScrollDistance() * 1.08}`,
+                        scrub: true,
+                        pin: true,
+                        anticipatePin: 1,
+                        invalidateOnRefresh: true,
+                    },
+                })
+                .to(scrollHold, {
+                    progress: 1,
+                    duration: 0.05,
+                    ease: "none",
+                })
+                .addLabel("travel")
+                .to(
+                    scrollerEl,
+                    {
+                        x: () => -getScrollDistance(),
+                        duration: 1,
+                        ease: "none",
+                    },
+                    "travel",
+                )
+                .to(
+                    projectScrollerEl,
+                    {
+                        x: () => window.innerWidth * 1.0, // +counterstage motion: as the user scrolls the content to the left, we scroll items 100% to the right to net appear a 50% scroll left. cool, right?
+                        duration: 1,
+                        ease: "none",
+                    },
+                    "travel",
+                )
+                .to(
+                    prizeScrollerEl,
+                    {
+                        x: () => window.innerWidth * -0.5, // -withstage motion: pretty much same as above note, just inverted vfx rate
+                        duration: 1,
+                        ease: "none",
+                    },
+                    "travel",
+                )
+                .to(
+                    scrollHold,
+                    {
+                        progress: 2,
+                        duration: 0.05,
+                        ease: "none",
+                    },
+                    "travel+=1",
+                );
 
         return () => {
-            window.clearInterval(carouselTimer);
-
-            // disable p5
             renderer.remove();
 
-            // FIRST disable tweens
-            horizontalScrollTimeline?.scrollTrigger?.kill();
-            horizontalScrollTimeline?.kill();
+            window.clearInterval(eventTimer);
 
             stepStateTrigger?.kill();
-
             stepProgressPin?.kill();
+            stepPinTrigger?.kill();
 
-            stepsVisualPinTrigger?.kill();
-
-            // disable smoothscroll
-            // smoothie.kill();
+            scrollTimeline?.scrollTrigger?.kill();
+            scrollTimeline?.kill();
         };
     });
 </script>
