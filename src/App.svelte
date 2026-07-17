@@ -317,11 +317,11 @@
     <div id="smooth-content" class="relative z-10">
         <!-- hackclub icon -->
         <!-- <section class="absolute top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
-            <h6 class="text-(--accent-border) ml-[26.13px] tracking-wide">a hack</h6>
+            <h6 class="text-(--primary-bg) ml-[26.13px] tracking-wide">a hack</h6>
             <a href="https://hackclub.com" target="_blank" rel="noopener noreferrer" class="block">
                 <img src={hackclub} class="cursor-pointer transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-105 hover:drop-shadow-xl active:scale-95 active:-translate-y-1 active:duration-150" width="40" alt="Hack Club logo" />
             </a>
-            <h6 class="text-(--accent-border) tracking-wide">club ysws</h6>
+            <h6 class="text-(--primary-bg) tracking-wide">club ysws</h6>
         </section> -->
 
         <!-- orpheus flag -->
@@ -332,19 +332,19 @@
         </section>
 
         <!-- hackanomous presents -->
-        <!-- <section class="absolute top-[50dvh] left-1/2 translate-x-[-23rem] translate-y-[-11rem] -rotate-[15deg] z-1 underline underline-offset-2 decoration-(--accent-border) z-20">
-            <h6 class="font-content text-(--accent-border) tracking-wider">hackanomous presents</h6>
+        <!-- <section class="absolute top-[50dvh] left-1/2 translate-x-[-23rem] translate-y-[-11rem] -rotate-[15deg] z-1 underline underline-offset-2 decoration-(--primary-bg) z-20">
+            <h6 class="font-content text-(--primary-bg) tracking-wider">hackanomous presents</h6>
         </section> -->
 
         <!-- landing -->
         <section class="relative min-h-dvh flex justify-center items-center py-12 px-4">
             <div class="relative">
-                <div class="w-fit border border-(--code-bg) rounded-2xl px-16 py-2 relative z-10 -ml-24 -rotate-5 bg-[linear-gradient(175deg,var(--bg)_0%,#0B161850_33%,#080E1280_100%)]">
-                    <h3 class="font-content font-extralight text-sm text-(--text-h) tracking-widest">coming soon!</h3>
+                <div class="w-fit border border-(--primary-border) rounded-2xl px-16 py-2 relative z-10 -ml-24 -rotate-5 bg-[linear-gradient(175deg,var(--bg)_0%,#0B161850_33%,#080E1280_100%)]">
+                    <h3 class="font-content font-extralight text-sm text-(--primary-text-h) tracking-widest">coming soon!</h3>
                 </div>
                 <div class="flex">
                     <div class="text-right">
-                        <h1 class="font-heading font-regular text-7xl text-(--accent) mt-4">
+                        <h1 class="font-heading font-regular text-7xl text-(--primary) mt-4">
                             hackanomous
                         </h1>
                         <h1 class="font-heading font-regular text-4xl text-(--text) mt-4">
@@ -355,22 +355,22 @@
                 </div>
                 <div class="flex relative z-10 pl-36 pr-50">
                     <div class="relative flex-1 mr-4">
-                        <input id="rsvp-input" class="peer w-full px-4 font-mono font-light border-2 border-solid border-(--accent) text-(--text-h) rounded-xl py-3 focus:outline-none focus:border-(--accent-hover) focus:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)] bg-transparent placeholder:text-(--accent-border) placeholder-opacity-100" style="transition: box-shadow 0.35s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out;" type="text" placeholder="you@example.com" />
-                        <label for="rsvp-input" class="absolute left-3 -top-2.5 px-1 font-mono text-xs font-semibold text-(--accent-hover) bg-[#0a1215] opacity-0 translate-y-2 pointer-events-none transition-all duration-100 peer-focus:opacity-100 peer-focus:translate-y-0 rounded-sm border-2">email</label>
+                        <input id="rsvp-input" class="peer w-full px-4 font-mono font-light border-2 border-solid border-(--primary) text-(--primary-text-h) rounded-xl py-3 focus:outline-none focus:border-(--primary-hover) focus:shadow-[0_0_67px_color-mix(in_srgb,var(--primary-hover)_6.7%,transparent)] bg-transparent placeholder:text-(--primary-bg) placeholder-opacity-100" style="transition: box-shadow 0.35s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out;" type="text" placeholder="you@example.com" />
+                        <label for="rsvp-input" class="absolute left-3 -top-2.5 px-1 font-mono text-xs font-semibold text-(--primary-hover) bg-[#0a1215] opacity-0 translate-y-2 pointer-events-none transition-all duration-100 peer-focus:opacity-100 peer-focus:translate-y-0 rounded-sm border-2">email</label>
                     </div>
-                    <button onclick={() => window.open("https://hackanomous-rsvp.fillout.com/t/4oPTMjqFuaus", "_blank")} class="font-mono font-semibold border-2 border-solid border-(--accent) bg-(--accent) text-(--bg) rounded-xl px-10 py-3 cursor-pointer hover:bg-transparent hover:text-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_6.7%,transparent)]" style="transition: box-shadow 0.35s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out, color 0.15s ease-out;">RSVP!</button>
+                    <button onclick={() => window.open("https://hackanomous-rsvp.fillout.com/t/4oPTMjqFuaus", "_blank")} class="font-mono font-semibold border-2 border-solid border-(--primary) bg-(--primary) text-(--bg) rounded-xl px-10 py-3 cursor-pointer hover:bg-transparent hover:text-(--primary) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--primary-hover)_6.7%,transparent)]" style="transition: box-shadow 0.35s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out, color 0.15s ease-out;">RSVP!</button>
                 </div>
-                <h6 class="font-mono font-light text-xs text-center text-(--text-h) tracking-widest mt-4">
+                <h6 class="font-mono font-light text-xs text-center text-(--primary-text-h) tracking-widest mt-4">
                     ages 13-18 only. <span class="underline underline-offset-2">Sept 1</span> to <span class="underline underline-offset-2">Jan 1</span>.
                 </h6>
-                <div class="flex flex-col absolute bottom-14 -right-3 -rotate-5 font-mono text-xs text-(--accent-border)">
+                <div class="flex flex-col absolute bottom-14 -right-3 -rotate-5 font-mono text-xs text-(--primary-bg)">
                     <span class="text-right">with lots of love,</span>
                     <span class="text-right">jacob abby techno jenny &lt;3</span>
                 </div>
             </div>
             
             <!-- scroll down -->
-            <section class="absolute bottom-8 left-1/2 -translate-x-1/2 text-(--accent-border)">
+            <section class="absolute bottom-8 left-1/2 -translate-x-1/2 text-(--primary-bg)">
                 <div class="flex flex-row items-center gap-3 floater">
                     <Mouse size={24} />
                     <span class="font-content font-light text-base tracking-widest">SCROLL DOWN</span>
@@ -379,15 +379,15 @@
         </section>
 
         <!-- ysws overview -->
-        <div class="top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67 z-10 relative"></div>
+        <div class="top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--primary) to-transparent opacity-67 z-10 relative"></div>
             <section class="relative min-h-dvh px-6 md:px-12 xl:px-24 py-24 pb-36 flex flex-col justify-center items-center bg-black/80">
 
             <div class="max-w-6xl mx-auto w-full">
-                <h1 class="font-heading text-3xl mb-8 tracking-wide">what is <span class="font-mono font-bold text-4xl text-(--accent)">Hackanomous</span>?</h1>
-                <p class="font-content leading-relaxed"><span class="font-mono font-bold text-(--accent)">Hackanomous</span> is a <span class="font-mono font-bold text-(--accent)">YSWS</span> program where you design and ship <span class="font-mono font-bold text-(--accent)">AI-driven</span> personal projects: hardware or software.<br>We walk you through building your own projects while exploring both effective and ineffective usecases of AI, and ship you free rewards!<br><br>We're even hosting a hackathon in <span class="font-mono font-bold text-(--accent)">Islambad, Pakistan</span> to conclude the event! Qualify by earning enough hours to score an invite!</p>
+                <h1 class="font-heading text-3xl mb-8 tracking-wide">what is <span class="font-mono font-bold text-4xl text-(--primary)">Hackanomous</span>?</h1>
+                <p class="font-content leading-relaxed"><span class="font-mono font-bold text-(--primary)">Hackanomous</span> is a <span class="font-mono font-bold text-(--primary)">YSWS</span> program where you design and ship <span class="font-mono font-bold text-(--primary)">AI-driven</span> personal projects: hardware or software.<br>We walk you through building your own projects while exploring both effective and ineffective usecases of AI, and ship you free rewards!<br><br>We're even hosting a hackathon in <span class="font-mono font-bold text-(--primary)">Islambad, Pakistan</span> to conclude the event! Qualify by earning enough hours to score an invite!</p>
 
                 <div class="mt-14 w-full">
-                    <div class="group relative block w-full origin-center transform-gpu overflow-hidden rounded-2xl border-2 border-(--code-bg) bg-black/70 aspect-16/10 sm:aspect-video lg:aspect-21/9 focus-within:border-(--accent) focus-within:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_5%,transparent)] hover:border-(--accent) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--accent-hover)_4%,transparent)] motion-safe:hover:scale-[1.018] motion-safe:hover:rotate-[0.8deg] transition-all duration-500 ease-out will-change-transform">
+                    <div class="group relative block w-full origin-center transform-gpu overflow-hidden rounded-2xl border-2 border-(--primary-border) bg-black/70 aspect-16/10 sm:aspect-video lg:aspect-21/9 focus-within:border-(--primary) focus-within:shadow-[0_0_67px_color-mix(in_srgb,var(--primary-hover)_5%,transparent)] hover:border-(--primary) hover:shadow-[0_0_67px_color-mix(in_srgb,var(--primary-hover)_4%,transparent)] motion-safe:hover:scale-[1.018] motion-safe:hover:rotate-[0.8deg] transition-all duration-500 ease-out will-change-transform">
                         <a href={activeEvent.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeEvent.label}`} class="absolute inset-0 z-10 cursor-pointer focus:outline-none"></a>
                         {#key carouselIndex}
                             <img transition:fade={{ duration: 200 }} src={activeEvent.image} alt={activeEvent.label} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
@@ -402,8 +402,8 @@
                             </div>
                             <div class="pointer-events-auto flex gap-2 translate-y-2" role="group" aria-label="Event carousel controls">
                                 {#each events as event, index (event.label)}
-                                    <button type="button" onclick={() => (carouselIndex = index)} aria-label={`Show ${event.label}`} aria-pressed={index === carouselIndex} class="flex h-5 w-10 items-center rounded-full border-none bg-transparent p-0 opacity-80 transition-opacity duration-200 hover:opacity-100 focus:outline-none focus-visible:shadow-[0_0_0_2px_var(--accent)] cursor-pointer">
-                                        <span class={`h-1.5 w-full rounded-full transition-all duration-200 ${index === carouselIndex ? "bg-(--accent)" : "bg-(--accent-border)/50"}`}></span>
+                                    <button type="button" onclick={() => (carouselIndex = index)} aria-label={`Show ${event.label}`} aria-pressed={index === carouselIndex} class="flex h-5 w-10 items-center rounded-full border-none bg-transparent p-0 opacity-80 transition-opacity duration-200 hover:opacity-100 focus:outline-none focus-visible:shadow-[0_0_0_2px_var(--primary)] cursor-pointer">
+                                        <span class={`h-1.5 w-full rounded-full transition-all duration-200 ${index === carouselIndex ? "bg-(--primary)" : "bg-(--primary-bg)/50"}`}></span>
                                     </button>
                                 {/each}
                             </div>
@@ -418,7 +418,7 @@
                 <ChevronDown size={24}/>
             </div>
 
-            <div class="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67 z-10"></div>
+            <div class="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--primary) to-transparent opacity-67 z-10"></div>
         </section>
 
         <section bind:this={stepsSection} class="min-h-dvh flex flex-col items-center overflow-hidden w-full" id="steps-section">
@@ -429,8 +429,8 @@
                     
                     <!-- steps progress bar -->
                     <div class="absolute inset-y-0 left-0 w-1 z-20">
-                        <div id="steps-progress-wrapper" class="w-full h-[50vh] min-h-[50dvh] bg-(--code-bg)">
-                            <div id="step-progress" class="w-full h-1/4 bg-(--accent) shadow-[0_0_20px_color-mix(in_srgb,var(--accent)_3%,transparent)]" style="transform: translateY(0%);"></div>
+                        <div id="steps-progress-wrapper" class="w-full h-[50vh] min-h-[50dvh] bg-(--primary-border)">
+                            <div id="step-progress" class="w-full h-1/4 bg-(--primary) shadow-[0_0_20px_color-mix(in_srgb,var(--primary)_3%,transparent)]" style="transform: translateY(0%);"></div>
                         </div>
                     </div>
 
@@ -481,26 +481,26 @@
                 <div class="w-1/2 relative h-full lg:-ml-32 lg:w-(--steps-copy-width) lg:shrink-0">
                     <div bind:this={stepsVisual} class="relative flex aspect-square w-full items-center justify-center overflow-hidden lg:aspect-auto lg:h-[calc(var(--steps-copy-width)+4rem)]">
                         {#key activeStepIndex}
-                            <section class="absolute inset-0 flex flex-col items-center gap-3 px-8 text-center font-mono text-(--text-h) will-change-opacity">
+                            <section class="absolute inset-0 flex flex-col items-center gap-3 px-8 text-center font-mono text-(--primary-text-h) will-change-opacity">
                                 {#if activeStepIndex === 0}
                                     <div class="relative h-[78%] w-[78%] lg:w-[calc(78%+3.12rem)]">
                                         <img src={mascotDark} alt="anomaly having an idea" class="absolute bottom-[15%] left-[calc(50%+18px)] h-[58%] -translate-x-1/2 object-contain" />
-                                        <Lightbulb class="absolute left-1/2 top-[15%] h-24 w-24 -translate-x-1/2 text-(--accent) lg:h-28 lg:w-28" strokeWidth={1.8} />
+                                        <Lightbulb class="absolute left-1/2 top-[15%] h-24 w-24 -translate-x-1/2 text-(--primary) lg:h-28 lg:w-28" strokeWidth={1.8} />
                                     </div>
                                 {:else if activeStepIndex === 1}
                                     <div class="relative h-[78%] w-[78%] lg:w-[calc(78%+3.12rem)]">
-                                        <Hammer class="absolute bottom-[48%] left-[calc(50%+136px)] h-24 w-24 -translate-x-1/2 text-(--accent) lg:h-28 lg:w-28" strokeWidth={1.9} />
+                                        <Hammer class="absolute bottom-[48%] left-[calc(50%+136px)] h-24 w-24 -translate-x-1/2 text-(--primary) lg:h-28 lg:w-28" strokeWidth={1.9} />
                                         <img src={mascotDark} alt="anomaly holding a hammer" class="absolute bottom-[23%] left-[calc(50%-24px)] h-[56%] -translate-x-1/2 object-contain" />
                                     </div>
                                 {:else if activeStepIndex === 2}
                                     <div class="relative h-[68%] w-[84%] lg:w-[calc(84%+3.36rem)]">
-                                        <Truck class="absolute bottom-[22%] left-1/2 h-[52%] w-[86%] -translate-x-1/2 text-(--accent)" strokeWidth={1.8} />
+                                        <Truck class="absolute bottom-[22%] left-1/2 h-[52%] w-[86%] -translate-x-1/2 text-(--primary)" strokeWidth={1.8} />
                                         <img src={mascotDark} alt="anomaly logo on truck side" class="absolute bottom-[42%] left-[42.5%] h-[20%] -translate-x-1/2 object-contain" />
                                     </div>
                                 {:else}
                                     <div class="relative h-[78%] w-[48%] lg:w-[calc(48%+1.92rem)]">
                                         <img src={mascotDark} alt="anomaly with a reward" class="absolute bottom-[16%] left-[calc(50%-18px)] h-[58%] -translate-x-1/2 object-contain" />
-                                        <Trophy class="absolute left-[calc(50%-42px)] top-[18%] h-24 w-24 -translate-x-1/2 text-(--accent) lg:h-28 lg:w-28" strokeWidth={1.8} />
+                                        <Trophy class="absolute left-[calc(50%-42px)] top-[18%] h-24 w-24 -translate-x-1/2 text-(--primary) lg:h-28 lg:w-28" strokeWidth={1.8} />
                                     </div>
                                 {/if}
                             </section>
@@ -514,7 +514,7 @@
         <!-- horizontal section -->
         <section bind:this={horizontalSection} class="min-h-dvh flex flex-col relative overflow-hidden bg-black/80">
             <!-- top border strip glow -->
-            <div class="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
+            <div class="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--primary) to-transparent opacity-67"></div>
 
             <div class="w-full overflow-hidden flex-1">
                 <div bind:this={horizontalScroller} class="horizontal-scroller h-full absolute overflow-hidden">
@@ -523,34 +523,34 @@
                     <div class="absolute top-1/2 left-[5dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45dvw] z-10 flex flex-col items-start text-left">
                         <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
                             <span class="italic">DE</span>SLOP THE<br />
-                            <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--accent)_0%,color-mix(in_srgb,var(--accent)_67%,transparent)_100%)]">WORLD.</span>
+                            <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--primary)_0%,color-mix(in_srgb,var(--primary)_67%,transparent)_100%)]">WORLD.</span>
                         </h2>
 
-                        <p class="font-mono font-normal text-lg md:text-xl leading-relaxed text-(--text-h) mt-6 max-w-2xl">
+                        <p class="font-mono font-normal text-lg md:text-xl leading-relaxed text-(--primary-text-h) mt-6 max-w-2xl">
                             the AI bubble might just be about to pop.<br />
-                            <span class="font-bold text-(--text-l)">YOUR MISSION:</span> build projects incorporating AI that solve <u><span class="font-bold text-(--text-l)">real-world</span></u> problems.
+                            <span class="font-bold text-(--primary-text-l)">YOUR MISSION:</span> build projects incorporating AI that solve <u><span class="font-bold text-(--primary-text-l)">real-world</span></u> problems.
                         </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 w-full max-w-3xl">
-                            <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-1 transition-all duration-300 ease-out will-change-transform group cursor-default">
-                                <h4 class="font-heading text-3xl text-(--accent) mb-2 text-left">software</h4>
-                                <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-300">Build software that implements AI or ML to earn Bolts! Use them to buy Raspberry Pis, API credits, RAM & GPU grants, and more!</p>
+                            <div class="border border-(--primary-border) p-6 rounded-2xl origin-center transform-gpu motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-1 transition-all duration-300 ease-out will-change-transform group cursor-default">
+                                <h4 class="font-heading text-3xl text-(--primary) mb-2 text-left">software</h4>
+                                <p class="font-content text-sm font-light text-(--primary-text-h) group-hover:text-(--text) transition-colors duration-300">Build software that implements AI or ML to earn Bolts! Use them to buy Raspberry Pis, API credits, RAM & GPU grants, and more!</p>
                             </div>
-                            <div class="border border-(--code-bg) p-6 rounded-2xl origin-center transform-gpu motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-1 transition-all duration-300 ease-out will-change-transform group cursor-default">
-                                <h4 class="font-heading text-3xl text-(--accent) mb-2 text-left">hardware</h4>
-                                <p class="font-content text-sm font-light text-(--text-h) group-hover:text-(--text) transition-colors duration-300">Design hardware that implements AI or ML and receive funding to build it! Earn bolts for your physical work!</p>
+                            <div class="border border-(--primary-border) p-6 rounded-2xl origin-center transform-gpu motion-safe:hover:scale-[1.02] motion-safe:hover:rotate-1 transition-all duration-300 ease-out will-change-transform group cursor-default">
+                                <h4 class="font-heading text-3xl text-(--primary) mb-2 text-left">hardware</h4>
+                                <p class="font-content text-sm font-light text-(--primary-text-h) group-hover:text-(--text) transition-colors duration-300">Design hardware that implements AI or ML and receive funding to build it! Earn bolts for your physical work!</p>
                             </div>
                         </div>
 
                         <div class="flex gap-5 mt-8">
-                            <button onclick={() => gsap.to(window, { duration: .67, scrollTo: { y: '#faq', autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> LEARN MORE </button>
-                            <button onclick={() => gsap.to(window, { duration: 1, scrollTo: { y: 0, autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--accent) text-(--accent) hover:bg-(--accent) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--accent)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> REGISTER NOW </button>
+                            <button onclick={() => gsap.to(window, { duration: .67, scrollTo: { y: '#faq', autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--primary) text-(--primary) hover:bg-(--primary) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--primary)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> LEARN MORE </button>
+                            <button onclick={() => gsap.to(window, { duration: 1, scrollTo: { y: 0, autoKill: true }, ease: 'power2.inOut' })} class="font-mono font-semibold border-2 border-solid border-(--primary) text-(--primary) hover:bg-(--primary) hover:text-(--bg) rounded-xl px-12 py-4 cursor-pointer focus:outline-none hover:shadow-[0_0_30px_color-mix(in_srgb,var(--primary)_30%,transparent)] transition-all duration-150 tracking-wide text-lg"> REGISTER NOW </button>
                         </div>
                     </div>
 
                     <!-- projects -->
                     <div class="project-lane z-10 relative rotate-25 overflow-hidden">
-                        <div bind:this={projectScroller} class="h-full min-w-full w-max border border-(--code-bg) flex p-4 gap-4 rounded-bl-3xl">
+                        <div bind:this={projectScroller} class="h-full min-w-full w-max border border-(--primary-border) flex p-4 gap-4 rounded-bl-3xl">
                             <!-- TODO: fill projects -->
                             <!-- TODO: differentiate from items/shop bc i lit just copypasted it for now -->
                             {#each scrollerItemIndexes as index (`project-${index}`)}
@@ -571,7 +571,7 @@
 
                     <!-- right content -->
                     <!-- TODO: rewrite ts slop -->
-                    <div class="absolute top-[42%] right-[5dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45dvw] z-10 flex flex-col items-end text-right selection:!bg-(--accent)">
+                    <div class="absolute top-[42%] right-[5dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45dvw] z-10 flex flex-col items-end text-right selection:!bg-(--primary)">
                         <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
                             <span class="italic">DE</span>SLOP THE<br />
                             <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--secondary)_0%,color-mix(in_srgb,var(--secondary)_67%,transparent)_100%)]">WORLD.</span>
@@ -590,7 +590,7 @@
             </div>
 
             <!-- bottom border strip glow -->
-            <div class="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
+            <div class="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--primary) to-transparent opacity-67"></div>
         </section>
 
         <!-- standard FAQ and closing info -->
@@ -601,7 +601,7 @@
                 <div class="relative w-full mb-12">
                     <h1 class="font-heading font-regular text-5xl md:text-6xl text-(--text) w-full relative z-10">FAQ</h1>
                     <!-- real text -->
-                    <div class="absolute top-0 left-0 font-heading font-regular text-5xl md:text-6xl text-(--accent)" style="transform: translate(6px, 3px);">FAQ</div>
+                    <div class="absolute top-0 left-0 font-heading font-regular text-5xl md:text-6xl text-(--primary)" style="transform: translate(6px, 3px);">FAQ</div>
                     <!-- offset text -->
                 </div>
 
@@ -610,23 +610,23 @@
                     <div class="flex flex-col">
                         <Question question="Who can participate?">
                             <!-- vetted answer -->
-                            <p>Anyone between the ages of <span class="font-mono font-bold text-(--accent)">13</span> and <span class="font-mono font-bold text-(--accent)">18</span> (inclusive) can participate in Hackanomous!</p>
+                            <p>Anyone between the ages of <span class="font-mono font-bold text-(--primary)">13</span> and <span class="font-mono font-bold text-(--primary)">18</span> (inclusive) can participate in Hackanomous!</p>
                         </Question>
                         <Question question="What projects can I build?">
                             <!-- vetted answer -->
-                            <p>You can build any project incorporating <span class="font-mono font-bold text-(--accent)">AI</span> or <span class="font-mono font-bold text-(--accent)">ML</span>! We want to see your innovation shine, whether it's software, hardware, or something COMPLETELY new and unique.</p>
+                            <p>You can build any project incorporating <span class="font-mono font-bold text-(--primary)">AI</span> or <span class="font-mono font-bold text-(--primary)">ML</span>! We want to see your innovation shine, whether it's software, hardware, or something COMPLETELY new and unique.</p>
                         </Question>
                         <Question question="I don't know anything about AI/ML!">
                             <!-- vetted answer -->
-                            <p><span class="font-mono font-bold text-(--accent)">No problem!</span> We have resources and mentors to help you learn. Plus, the best way to learn is by building, so dive in and start experimenting!</p>
+                            <p><span class="font-mono font-bold text-(--primary)">No problem!</span> We have resources and mentors to help you learn. Plus, the best way to learn is by building, so dive in and start experimenting!</p>
                         </Question>
                         <Question question="What are the prizes?">
                             <!-- vetted answer -->
-                            <p>We have a variety of exciting prizes for our participants! Shipped projects will receive <span class="font-mono font-bold text-(--accent)">Bolts</span>, which can be redeemed for Raspberry Pis, AI credits, RAM & GPU grants, and more. We might even send you an <span class="font-mono font-bold text-(--accent)">RTX 5090</span>!</p>
+                            <p>We have a variety of exciting prizes for our participants! Shipped projects will receive <span class="font-mono font-bold text-(--primary)">Bolts</span>, which can be redeemed for Raspberry Pis, AI credits, RAM & GPU grants, and more. We might even send you an <span class="font-mono font-bold text-(--primary)">RTX 5090</span>!</p>
                         </Question>
                         <Question question="Is this legit? What's Hack Club?">
                             <!-- vetted answer -->
-                            <p><a href="https://hackclub.com" target="_blank" rel="noopener noreferrer" class="font-mono font-bold underline text-(--accent)">Hack Club</a> is the world's largest community of teenage makers, and a 501(c)(3) nonprofit. Hack Club is supported by donations from tech companies like GitHub and individuals like Michael Dell. Hack Club is fiscally transparent.</p>
+                            <p><a href="https://hackclub.com" target="_blank" rel="noopener noreferrer" class="font-mono font-bold underline text-(--primary)">Hack Club</a> is the world's largest community of teenage makers, and a 501(c)(3) nonprofit. Hack Club is supported by donations from tech companies like GitHub and individuals like Michael Dell. Hack Club is fiscally transparent.</p>
                         </Question>
                     </div>
 
@@ -634,25 +634,25 @@
                     <div class="flex flex-col">
                         <Question question="How do I register?">
                             <!-- vetted answer -->
-                            <p>Registration for Hackanomous is simple! Just scroll up and click the <span class="font-mono font-bold text-(--accent)">RSVP</span> button to fill out the registration form.</p>
+                            <p>Registration for Hackanomous is simple! Just scroll up and click the <span class="font-mono font-bold text-(--primary)">RSVP</span> button to fill out the registration form.</p>
                         </Question>
                         <Question question="How many projects can I build?">
                             <!-- vetted answer -->
-                            <p>You can build as many projects as you like, but we encourage you to focus on <span class="font-mono font-bold text-(--accent)">quality over quantity</span>. Your rewards <span class="font-mono font-bold text-(--accent)">scale exponentially</span> with time, so really focus on building something amazing!</p>
+                            <p>You can build as many projects as you like, but we encourage you to focus on <span class="font-mono font-bold text-(--primary)">quality over quantity</span>. Your rewards <span class="font-mono font-bold text-(--primary)">scale exponentially</span> with time, so really focus on building something amazing!</p>
                         </Question>
                         <Question question="How do I fund hardware?">
                             <!-- vetted answer -->
-                            <p>Don't worry! You can get up to <span class="font-mono font-bold text-(--accent)">$100</span> <span class="font-mono font-bold text-(--accent)">(TODO: TBD)</span> to buy parts to build your hardware project.</p>
+                            <p>Don't worry! You can get up to <span class="font-mono font-bold text-(--primary)">$100</span> <span class="font-mono font-bold text-(--primary)">(TODO: TBD)</span> to buy parts to build your hardware project.</p>
                         </Question>
                         <Question question="Is this free?">
                             <!-- vetted answer -->
-                            <p><span class="font-mono font-bold text-(--accent)">Yes!</span> Hackanomous is <span class="font-mono font-bold text-(--accent)">100%</span> free - all the prizes are donated by sponsors or paid for by us! <span class="font-mono text-sm text-(--accent)">*customs may occur outside the US!</span></p>
+                            <p><span class="font-mono font-bold text-(--primary)">Yes!</span> Hackanomous is <span class="font-mono font-bold text-(--primary)">100%</span> free - all the prizes are donated by sponsors or paid for by us! <span class="font-mono text-sm text-(--primary)">*customs may occur outside the US!</span></p>
                         </Question>
                         <Question question="I have more questions...">
                             <!-- vetted answer -->
-                            <p>Ask us in <span class="font-mono font-bold text-(--accent)">#hackanomous-help</span> in Slack!</p>
+                            <p>Ask us in <span class="font-mono font-bold text-(--primary)">#hackanomous-help</span> in Slack!</p>
                             <!-- switch out when we get an hc email -->
-                            <!-- <p>Ask us in <span class="font-mono font-bold text-(--accent)">#hackanomous-help</span> in Slack, or email us at <a href="mailto:hackanomous@hackclub.com" class="font-mono font-bold underline text-(--accent)">hackanomous@hackclub.com</a>!</p> -->
+                            <!-- <p>Ask us in <span class="font-mono font-bold text-(--primary)">#hackanomous-help</span> in Slack, or email us at <a href="mailto:hackanomous@hackclub.com" class="font-mono font-bold underline text-(--primary)">hackanomous@hackclub.com</a>!</p> -->
                         </Question>
                     </div>
                 </div>
@@ -660,32 +660,32 @@
 
             <!-- closing info -->
             <div class="bg-black/80 absolute bottom-4 left-4 px-1">
-<pre class="font-mono text-xs text-(--text-h) block">
-<span class="text-(--accent)">+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+</span>
-<span class="text-(--accent)">| </span><span class="font-bold text-(--text)"># Built by <a class="underline underline-offset-1" href="https://hackclub.enterprise.slack.com/team/U0A76B70A3V" target="_blank" rel="noopener noreferrer">technodot</a> @ Hack Club</span>                                                               <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span>                                                                                               <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span>Hack Club is a 501(c)(3) nonprofit and network of 67k+ technical high schoolers. We believe you<span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span>learn best by building so we're creating community and providing grants so you can make awesome<span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span>projects. In the past few years, we've partnered with GitHub to run Summer of Making, hosted   <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span>the world's longest hackathon on land, and ran Canada's largest high school hackathon.         <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span>                                                                                               <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span>At Hack Club, students aren't just learning, they're shipping.                                 <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+</span>
+<pre class="font-mono text-xs text-(--primary-text-h) block">
+<span class="text-(--primary)">+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+</span>
+<span class="text-(--primary)">| </span><span class="font-bold text-(--text)"># Built by <a class="underline underline-offset-1" href="https://hackclub.enterprise.slack.com/team/U0A76B70A3V" target="_blank" rel="noopener noreferrer">technodot</a> @ Hack Club</span>                                                               <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span>                                                                                               <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span>Hack Club is a 501(c)(3) nonprofit and network of 67k+ technical high schoolers. We believe you<span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span>learn best by building so we're creating community and providing grants so you can make awesome<span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span>projects. In the past few years, we've partnered with GitHub to run Summer of Making, hosted   <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span>the world's longest hackathon on land, and ran Canada's largest high school hackathon.         <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span>                                                                                               <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span>At Hack Club, students aren't just learning, they're shipping.                                 <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+</span>
 </pre>
             </div>
             
             <div class="bg-black/80 absolute bottom-4 right-4 px-1">
-<pre class="font-mono text-xs text-(--text-h) block m-0">
-<span class="text-(--accent)">+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+</span>
-<span class="text-(--accent)">| </span><span class="font-bold text-(--text)">Hack Club</span>     <span class="font-bold text-(--text)">Resources</span>          <span class="font-bold text-(--text)">Hackanomous</span> <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span>                                             <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span><a class="footer-link" href="https://hackclub.com/philosophy/" target="_blank" rel="noopener noreferrer">Philosophy</a>    <a class="footer-link" href="https://events.hackclub.com/" target="_blank" rel="noopener noreferrer">Events</a>             Guides      <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span><a class="footer-link" href="https://hackclub.com/team/" target="_blank" rel="noopener noreferrer">Our Team</a>      <a class="footer-link" href="https://toolbox.hackclub.com/" target="_blank" rel="noopener noreferrer">Toolbox</a>                        <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span><a class="footer-link" href="https://hackclub.com/jobs/" target="_blank" rel="noopener noreferrer">Jobs (ew)</a>     <a class="footer-link" href="https://hackclub.com/map" target="_blank" rel="noopener noreferrer">Clubs Map</a>                      <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span><a class="footer-link" href="https://hackclub.com/brand/" target="_blank" rel="noopener noreferrer">Branding</a>      <a class="footer-link" href="https://hackclub.com/conduct/" target="_blank" rel="noopener noreferrer">Code of Conduct</a>                <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span><a class="footer-link" href="https://hackclub.com/philanthropy/" target="_blank" rel="noopener noreferrer">Donate</a>        <a class="footer-link" href="https://hackclub.com/safeguarding" target="_blank" rel="noopener noreferrer">Safeguarding</a>                   <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">| </span><a class="footer-link" href="https://hackclub.com/imprint/" target="_blank" rel="noopener noreferrer">Imprint</a>       <a class="footer-link" href="https://hackclub.com/privacy/" target="_blank" rel="noopener noreferrer">Privacy &amp; Terms</a>                <span class="text-(--accent)"> |</span>
-<span class="text-(--accent)">+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+</span>
+<pre class="font-mono text-xs text-(--primary-text-h) block m-0">
+<span class="text-(--primary)">+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+</span>
+<span class="text-(--primary)">| </span><span class="font-bold text-(--text)">Hack Club</span>     <span class="font-bold text-(--text)">Resources</span>          <span class="font-bold text-(--text)">Hackanomous</span> <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span>                                             <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span><a class="footer-link" href="https://hackclub.com/philosophy/" target="_blank" rel="noopener noreferrer">Philosophy</a>    <a class="footer-link" href="https://events.hackclub.com/" target="_blank" rel="noopener noreferrer">Events</a>             Guides      <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span><a class="footer-link" href="https://hackclub.com/team/" target="_blank" rel="noopener noreferrer">Our Team</a>      <a class="footer-link" href="https://toolbox.hackclub.com/" target="_blank" rel="noopener noreferrer">Toolbox</a>                        <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span><a class="footer-link" href="https://hackclub.com/jobs/" target="_blank" rel="noopener noreferrer">Jobs (ew)</a>     <a class="footer-link" href="https://hackclub.com/map" target="_blank" rel="noopener noreferrer">Clubs Map</a>                      <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span><a class="footer-link" href="https://hackclub.com/brand/" target="_blank" rel="noopener noreferrer">Branding</a>      <a class="footer-link" href="https://hackclub.com/conduct/" target="_blank" rel="noopener noreferrer">Code of Conduct</a>                <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span><a class="footer-link" href="https://hackclub.com/philanthropy/" target="_blank" rel="noopener noreferrer">Donate</a>        <a class="footer-link" href="https://hackclub.com/safeguarding" target="_blank" rel="noopener noreferrer">Safeguarding</a>                   <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">| </span><a class="footer-link" href="https://hackclub.com/imprint/" target="_blank" rel="noopener noreferrer">Imprint</a>       <a class="footer-link" href="https://hackclub.com/privacy/" target="_blank" rel="noopener noreferrer">Privacy &amp; Terms</a>                <span class="text-(--primary)"> |</span>
+<span class="text-(--primary)">+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+</span>
 </pre>
             </div>
         </section>
@@ -731,13 +731,13 @@
     }
 
     .footer-link:hover {
-        color: var(--accent);
+        color: var(--primary);
         text-decoration: underline;
         text-underline-offset: 2px;
     }
 
     .footer-link:focus-visible {
-        outline: 1px dashed var(--accent);
+        outline: 1px dashed var(--primary);
         outline-offset: 2px;
     }
 

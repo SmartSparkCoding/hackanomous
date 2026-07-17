@@ -1,4 +1,4 @@
-﻿<script>
+<script>
     import { cubicOut } from "svelte/easing";
 
     let { question, children } = $props();
@@ -40,19 +40,19 @@
 </script>
 
 <div class="relative w-full">
-    <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-(--accent) to-transparent opacity-67"></div>
+    <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-(--primary) to-transparent opacity-67"></div>
 
     <button type="button" class="w-full flex items-center justify-between py-5 md:py-6 text-left focus:outline-none group cursor-pointer bg-transparent border-none" onclick={() => (isOpen = !isOpen)} aria-expanded={isOpen}>
         <div class="flex items-center gap-4 md:gap-5">
-            <span class="font-mono text-2xl md:text-3xl text-(--accent) transition-transform duration-300 {isOpen ? 'rotate-90' : ''}"> &gt; </span>
-            <h3 class="font-heading text-xl md:text-2xl text-(--text) group-hover:text-(--accent) transition-colors duration-300 pr-4">
+            <span class="font-mono text-2xl md:text-3xl text-(--primary) transition-transform duration-300 {isOpen ? 'rotate-90' : ''}"> &gt; </span>
+            <h3 class="font-heading text-xl md:text-2xl text-(--text) group-hover:text-(--primary) transition-colors duration-300 pr-4">
                 {question}
             </h3>
         </div>
     </button>
 
     {#if isOpen}
-        <div class="pb-6 font-content text-sm md:text-base text-(--text-h) leading-relaxed" transition:angledSlide={{ duration: 400 }}>
+        <div class="pb-6 font-content text-sm md:text-base text-(--primary-text-h) leading-relaxed" transition:angledSlide={{ duration: 400 }}>
             {@render children()}
         </div>
     {/if}

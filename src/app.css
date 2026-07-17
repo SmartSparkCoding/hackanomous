@@ -1,8 +1,3 @@
-/* L8-L12 in root index.html */
-/* @import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"); */
-
 @import "tailwindcss";
 
 @theme {
@@ -11,28 +6,22 @@
     --font-mono: var(--mono);
 }
 
-::selection {
-    background: #9333ea;
-}
-
 :root {
-    --text: #ffffff;
-    --text-h: #b0e4cc;
-    --text-l: #c4eeda;
     --bg: #0b1618;
-    --border: #34745f;
-    --code-bg: #255a4d;
-    --accent: #10b981;
-    --accent-hover: #24e1a0;
-    --accent-bg: rgba(16, 185, 129, 0.1);
-    --accent-border: #67887c;
-    --social-bg: rgba(11, 22, 24, 0.5);
-    --shadow: rgba(0, 0, 0, 0.3) 0 10px 15px -3px, rgba(0, 0, 0, 0.2) 0 4px 6px -2px;
+    --text: #ffffff;
+
+    --primary: #10b981;
+    --primary-bg: #67887c;
+    --primary-hover: #24e1a0;
+    --primary-border: #255a4d;
+    --primary-text-h: #b0e4cc;
+    --primary-text-l: #c4eeda;
+
     --secondary: #9333ea;
     --secondary-bg: #4c245d;
-    --secondary-text: #ae8ed5;
-    --secondary-border: #5e327d;
     --secondary-hover: #ac5dff;
+    --secondary-border: #5e327d;
+    --secondary-text: #ae8ed5;
 
     --heading: "Unbounded", "Segoe UI", Roboto, system-ui, sans-serif;
     --sans: "Lexend", "Segoe UI", Roboto, system-ui, sans-serif;
@@ -53,9 +42,13 @@
     }
 }
 
+::selection {
+    background: var(--secondary);
+}
+
 * {
     scrollbar-width: thin;
-    scrollbar-color: color-mix(in srgb, var(--accent-border) 72%, transparent) transparent;
+    scrollbar-color: color-mix(in srgb, var(--primary-bg) 72%, transparent) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -68,7 +61,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--accent) 38%, transparent);
+    background: color-mix(in srgb, var(--primary) 38%, transparent);
     border: 2px solid transparent;
     border-radius: 999px;
     background-clip: padding-box;
@@ -76,11 +69,11 @@
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: color-mix(in srgb, var(--accent-hover) 52%, transparent);
+    background: color-mix(in srgb, var(--primary-hover) 52%, transparent);
 }
 
 *::-webkit-scrollbar-thumb:active {
-    background: color-mix(in srgb, var(--accent-hover) 70%, transparent);
+    background: color-mix(in srgb, var(--primary-hover) 70%, transparent);
 }
 
 *::-webkit-scrollbar-corner {
