@@ -16,6 +16,7 @@
     import orpheus from "./assets/orpheus.svg";
 
     import itemRaspberryPi from "./assets/items/raspberry-pi.png";
+    import itemBambuLab from "./assets/items/bambu-lab.png";
 
     import Project from "./lib/Project.svelte";
     import Item from "./lib/Item.svelte";
@@ -554,6 +555,7 @@
                             <!-- TODO: fill shop -->
                             {#each scrollerItemIndexes as index (`prize-${index}`)}
                                 <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                                <Item label="Bambu Lab A1 Mini" image={itemBambuLab} hours={72} />
                             {/each}
                         </div>
                     </div>
