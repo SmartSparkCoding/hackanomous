@@ -17,6 +17,25 @@
 
     import itemRaspberryPi from "./assets/items/raspberry-pi.png";
     import itemBambuLab from "./assets/items/bambu-lab.png";
+    import itemAiGrant from "./assets/items/ai-grant.svg";
+    import itemCloudGrant from "./assets/items/cloud-grant.svg";
+    import itemHeadphoneGrant from "./assets/items/headphone-grant.png";
+    import itemMouseGrant from "./assets/items/mouse-grant.png";
+    import itemComputerGrant from "./assets/items/computer-grant.png";
+    import itemFlipperZero from "./assets/items/flipper-zero.png";
+    import itemArduinoUnoQ from "./assets/items/arduino-uno-q.png";
+    import itemEsp32Box from "./assets/items/esp32-s3-box-3.png";
+
+    import projectHandsFree from "./assets/projects/handsfree.webp";
+    import projectPic2Recipe from "./assets/projects/pic2recipe.webp";
+    import projectForgeFind from "./assets/projects/forgefind.webp";
+    import projectDjAi from "./assets/projects/dj-ai.webp";
+    import projectCluelessCloset from "./assets/projects/clueless-closet.webp";
+    import projectNoteForge from "./assets/projects/noteforge.webp";
+    import projectFocusForge from "./assets/projects/focusforge.webp";
+    import projectOshot from "./assets/projects/oshot.webp";
+    import projectExamScorePredictor from "./assets/projects/exam-score-predictor.webp";
+    import projectAutoEmailAi from "./assets/projects/autoemail-ai.png";
 
     import Project from "./lib/Project.svelte";
     import Item from "./lib/Item.svelte";
@@ -60,6 +79,69 @@
     ];
     let activeEvent = $derived(events[carouselIndex]);
 
+    const projects = [
+        {
+            label: "HandsFree",
+            author: "darren",
+            image: projectHandsFree,
+            href: "https://flavortown.hackclub.com/projects/20725",
+        },
+        {
+            label: "pic2recipe",
+            author: "ryan",
+            image: projectPic2Recipe,
+            href: "https://flavortown.hackclub.com/projects/19460",
+        },
+        {
+            label: "ForgeFind",
+            author: "ryan",
+            image: projectForgeFind,
+            href: "https://flavortown.hackclub.com/projects/19463",
+        },
+        {
+            label: "DJ AI",
+            author: "Ivole32",
+            image: projectDjAi,
+            href: "https://flavortown.hackclub.com/projects/3694",
+        },
+        {
+            label: "The Clueless Closet",
+            author: "Brahmtej the Python Man",
+            image: projectCluelessCloset,
+            href: "https://flavortown.hackclub.com/projects/15412",
+        },
+        {
+            label: "NoteForge",
+            author: "satya//7YA",
+            image: projectNoteForge,
+            href: "https://flavortown.hackclub.com/projects/14773",
+        },
+        {
+            label: "FocusForge",
+            author: "panayiotis.savva8",
+            image: projectFocusForge,
+            href: "https://flavortown.hackclub.com/projects/17711",
+        },
+        {
+            label: "oshot",
+            author: "toni",
+            image: projectOshot,
+            href: "https://flavortown.hackclub.com/projects/2149",
+        },
+        {
+            label: "Exam Score Predictor",
+            author: "Christie B",
+            image: projectExamScorePredictor,
+            href: "https://flavortown.hackclub.com/projects/2762",
+        },
+        {
+            label: "AutoEmailAI",
+            author: "Stefanos",
+            image: projectAutoEmailAi,
+            href: "https://summer.hackclub.com/projects/10104",
+        },
+    ];
+
     /** @param {number} index */
     const activateStep = (index) => {
         if (activeStepIndex === index) return;
@@ -68,7 +150,7 @@
         gsap.to("#step-progress", { yPercent: index * 100, duration: 0.2, ease: "power2.out", overwrite: true });
     };
 
-    const scrollerItemIndexes = Array.from({ length: 32 }, (_, index) => index); // TODO: replace with actual items/projects
+    const scrollerItemIndexes = Array.from({ length: 32 }, (_, index) => index);
 
     onMount(() => {
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -541,10 +623,8 @@
                     <!-- projects -->
                     <div class="project-lane z-10 relative rotate-25 overflow-hidden">
                         <div bind:this={projectScroller} class="h-full min-w-full w-max border border-(--primary-border) flex p-4 gap-4 rounded-bl-3xl">
-                            <!-- TODO: fill projects -->
-                            <!-- TODO: differentiate from items/shop bc i lit just copypasted it for now -->
                             {#each scrollerItemIndexes as index (`project-${index}`)}
-                                <Project label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
+                                <Project {...projects[index % projects.length]} />
                             {/each}
                         </div>
                     </div>
@@ -552,10 +632,17 @@
                     <!-- prizes -->
                     <div class="prize-lane z-10 relative rotate-25 overflow-hidden">
                         <div bind:this={prizeScroller} class="h-full min-w-full w-max border border-(--secondary-bg) flex p-4 gap-4">
-                            <!-- TODO: fill shop -->
                             {#each scrollerItemIndexes as index (`prize-${index}`)}
-                                <Item label="Raspberry Pi 6 or 7" image={itemRaspberryPi} hours={67} />
-                                <Item label="Bambu Lab A1 Mini" image={itemBambuLab} hours={72} />
+                                <Item label="$10 AI Usage Grant" image={itemAiGrant} bolts={30} />
+                                <Item label="$10 Cloud Hosting Grant" image={itemCloudGrant} bolts={30} />
+                                <Item label="Raspberry Pi 5" image={itemRaspberryPi} bolts="~320 bolts" />
+                                <Item label="$10 Headphone Grant" image={itemHeadphoneGrant} bolts={30} />
+                                <Item label="$10 Mouse Grant" image={itemMouseGrant} bolts={30} />
+                                <Item label="Flipper Zero" image={itemFlipperZero} bolts={760} />
+                                <Item label="Arduino UNO Q 4GB" image={itemArduinoUnoQ} bolts={200} />
+                                <Item label="ESP32-S3-BOX-3" image={itemEsp32Box} bolts={280} />
+                                <Item label="Bambu Lab A1 Mini" image={itemBambuLab} bolts="~720 bolts" />
+                                <Item label="$100 Computer Grant" image={itemComputerGrant} bolts={300} />
                             {/each}
                         </div>
                     </div>
@@ -564,13 +651,13 @@
                     <!-- TODO: rewrite ts slop -->
                     <div class="absolute top-[42%] right-[5dvw] -translate-y-[calc(50%+28px)] w-[85dvw] sm:w-[70dvw] md:w-[60dvw] lg:w-[45dvw] z-10 flex flex-col items-end text-right selection:!bg-(--primary)">
                         <h2 class="font-mono font-medium text-4xl md:text-6xl text-(--text) leading-tight">
-                            <span class="italic">DE</span>SLOP THE<br />
-                            <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--secondary)_0%,color-mix(in_srgb,var(--secondary)_67%,transparent)_100%)]">WORLD.</span>
+                            <span class="italic">AND</span> EARN<br />
+                            <span class="font-mono font-bold inline-block bg-clip-text text-transparent bg-[linear-gradient(90deg,var(--secondary)_0%,color-mix(in_srgb,var(--secondary)_67%,transparent)_100%)]">PRIZES.</span>
                         </h2>
 
                         <p class="font-mono font-normal text-lg md:text-xl leading-relaxed text-(--secondary-text) mt-6 max-w-2xl">
-                            the AI bubble might just be about to pop.<br />
-                            <span class="font-bold text-(--secondary-text)">YOUR MISSION:</span> build projects incorporating AI that solve <u><span class="font-bold text-(--secondary-text)">real-world</span></u> problems.
+                            keep on building your cool projects.<br />
+                            <span class="font-bold text-(--secondary-text)">WE'LL REWARD YOU FOR IT!</span> - two birds with one stone!
                         </p>
 
                         <div class="flex gap-5 mt-8">
