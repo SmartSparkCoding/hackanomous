@@ -435,7 +435,7 @@
                 <h6 class="font-mono font-light text-xs text-center text-(--primary-text-h) tracking-widest mt-4">
                     ages 13-18 only. <span class="underline underline-offset-2">Sept 1</span> to <span class="underline underline-offset-2">Jan 1</span>.
                 </h6>
-                <div class="flex flex-col absolute bottom-14 -right-3 -rotate-5 font-mono text-xs text-(--primary-bg)">
+                <div class="flex flex-col absolute bottom-14 right-4 -rotate-5 font-mono text-xs text-(--primary-bg)">
                     <span class="text-right">with lots of love,</span>
                     <span class="text-right">jacob techno jenny &lt;3</span>
                 </div>
