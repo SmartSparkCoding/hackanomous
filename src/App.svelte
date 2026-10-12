@@ -437,7 +437,7 @@
                 </h6>
                 <div class="flex flex-col absolute bottom-14 -right-3 -rotate-5 font-mono text-xs text-(--primary-bg)">
                     <span class="text-right">with lots of love,</span>
-                    <span class="text-right">jacob abby techno jenny &lt;3</span>
+                    <span class="text-right">jacob techno jenny &lt;3</span>
                 </div>
             </div>
             
